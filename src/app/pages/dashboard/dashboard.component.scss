@@ -1,0 +1,80 @@
+.sh-header {
+  width: auto;
+  height: 200px;
+  background: lightskyblue;
+  .sh-top {
+    height: 40px;
+    color: #efefef;
+    width: 1200px;
+    margin: 0 auto;
+    .logo {
+      float: left;
+      width: 50%;
+    }
+    .login {
+      float: left;
+      width: 50%;
+      text-align: right;
+      a {
+        color: #efefef;
+        margin: 0 20px;
+      }
+    }
+  }
+  .sh-header-title {
+    color: #efefef;
+    text-align: center;
+    margin-top: 30px;
+    h3 {
+      margin-top: 15px;
+    }
+  }
+}
+
+.case-history-list,
+.case-history-operation {
+  width: auto;
+  height: 400px;
+}
+
+.case-history-list {
+  height: auto;
+  background: #eee;
+}
+
+.actual-content {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+.actual-content-title {
+  width: auto;
+  height: 100px;
+  color: #555555;
+  h2 {
+    text-align: center;
+  }
+}
+.actual-title-con{
+  padding: 35px 0;
+}
+.actual-content-core {
+  clear: left;
+  .new-case-history {
+    float: left;
+    border: 1px solid lightblue;
+    width: 570px;
+    .new-case-con{
+      text-align: center;
+    }
+  }
+  .result-analyze {
+    float: left;
+    border: 1px solid lightblue;
+    width: 570px;
+    margin-left: 56px;
+    .new-case-con{
+      text-align: center;
+    }
+  }
+}
