@@ -6,6 +6,7 @@ import {PagesModule} from "./pages/pages.module";
 import {Routes, RouterModule} from "@angular/router";
 import {LoginModule} from "./login/login.module";
 import {HttpModule} from "@angular/http";
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 
 const appRoutes:Routes = [
   {path: '', redirectTo: 'login', pathMatch: 'full'},
@@ -19,6 +20,7 @@ const appRoutes:Routes = [
   imports: [
     BrowserModule,
     HttpModule,
+    NgxDatatableModule,
     RouterModule.forRoot(appRoutes),
     PagesModule,
     LoginModule
