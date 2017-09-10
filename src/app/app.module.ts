@@ -4,11 +4,13 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import {PagesModule} from "./pages/pages.module";
 import {Routes, RouterModule} from "@angular/router";
+import {LoginModule} from "./login/login.module";
+import {HttpModule} from "@angular/http";
 
 const appRoutes:Routes = [
-  {path: '', redirectTo: 'pages', pathMatch: 'full'},
-  { path: '**', redirectTo: 'pages' }
-]
+  {path: '', redirectTo: 'login', pathMatch: 'full'},
+  { path: '**', redirectTo: 'login' }
+];
 
 @NgModule({
   declarations: [
@@ -16,8 +18,10 @@ const appRoutes:Routes = [
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(appRoutes),
-    PagesModule
+    PagesModule,
+    LoginModule
   ],
   providers: [],
   bootstrap: [AppComponent]
