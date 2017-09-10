@@ -1,0 +1,32 @@
+.sh-header {
+  width: auto;
+  height: 200px;
+  background: lightskyblue;
+  .sh-top {
+    height: 40px;
+    color: #efefef;
+    width: 1200px;
+    margin: 0 auto;
+    .logo {
+      float: left;
+      width: 50%;
+    }
+    .login {
+      float: left;
+      width: 50%;
+      text-align: right;
+      a {
+        color: #efefef;
+        margin: 0 20px;
+      }
+    }
+  }
+  .sh-header-title {
+    color: #efefef;
+    text-align: center;
+    margin-top: 30px;
+    h3 {
+      margin-top: 15px;
+    }
+  }
+}

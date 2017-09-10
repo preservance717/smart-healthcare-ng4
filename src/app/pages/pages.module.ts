@@ -6,6 +6,7 @@ import {CaseHistoryComponent} from "./case-history/case-history.component";
 import {CaseHistoryDetailComponent} from "./case-history-detail/case-history-detail.component";
 import {ResultAnalyzeComponent} from "./result-analyze/result-analyze.component";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {NgaModule} from "../theme/components/nga.module";
 
 const pagesRoutes: Routes = [{
   path: 'pages',
@@ -22,6 +23,7 @@ const pagesRoutes: Routes = [{
 @NgModule({
   imports:[
     NgxDatatableModule,
+    NgaModule.forRoot(),
     RouterModule.forRoot(pagesRoutes)
   ],
   declarations:[
