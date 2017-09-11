@@ -5,11 +5,11 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CaseHistoryComponent} from "./case-history/case-history.component";
 import {CaseHistoryDetailComponent} from "./case-history-detail/case-history-detail.component";
 import {ResultAnalyzeComponent} from "./result-analyze/result-analyze.component";
-import {NgxDatatableModule} from "@swimlane/ngx-datatable";
-import {NgaModule} from "../theme/components/nga.module";
+// import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BsDatepickerModule} from "ngx-bootstrap";
+import {NgaModule} from "../theme/nga.module";
 
 const pagesRoutes: Routes = [{
   path: 'pages',
@@ -27,7 +27,7 @@ const pagesRoutes: Routes = [{
   imports:[
     BrowserModule,
     FormsModule,
-    NgxDatatableModule,
+    // NgxDatatableModule,
     BsDatepickerModule.forRoot(),
     NgaModule.forRoot(),
     RouterModule.forRoot(pagesRoutes)
@@ -38,7 +38,9 @@ const pagesRoutes: Routes = [{
     CaseHistoryComponent,
     CaseHistoryDetailComponent,
     ResultAnalyzeComponent
-  ]
+  ],
+  providers:[]
+
 })
 
 export class PagesModule{

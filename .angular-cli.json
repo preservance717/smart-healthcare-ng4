@@ -19,9 +19,21 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css"
+        "../node_modules/bootstrap/dist/css/bootstrap.css",
+        "../node_modules/font-awesome/scss/font-awesome.scss",
+        "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+        "styles.scss"
       ],
-      "scripts": [],
+      "scripts": [
+        "../node_modules/jquery/dist/jquery.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js",
+        "../node_modules/cornerstone-core/dist/cornerstone.js",
+        "../node_modules/cornerstone-math/dist/cornerstoneMath.js",
+        "../node_modules/cornerstone-tools/dist/cornerstoneTools.js",
+        "../node_modules/dicom-parser/dist/dicomParser.js",
+        "../src/assets/cornerstone/dist/cornerstoneWADOImageLoader.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",
