@@ -2,18 +2,25 @@ import {NgModule, ModuleWithProviders} from "@angular/core";
 import {ShHeaderComponent} from "./sh-header/sh-header.component";
 import {ShFooterComponent} from "./sh-footer/sh-footer.component";
 import {CommonModule} from "@angular/common";
+import {FileUploadComponent} from "./uploadFile/file-upload.component";
+import { NgUploaderModule } from 'ngx-uploader';
+import {BrowserModule} from "@angular/platform-browser";
 
 @NgModule({
   declarations: [
     ShHeaderComponent,
-    ShFooterComponent
+    ShFooterComponent,
+    FileUploadComponent
   ],
   imports: [
-    CommonModule
+    BrowserModule,
+    CommonModule,
+    NgUploaderModule
   ],
   exports:[
     ShHeaderComponent,
-    ShFooterComponent
+    ShFooterComponent,
+    FileUploadComponent
   ],
   providers: [],
 })

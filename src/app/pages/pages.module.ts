@@ -7,6 +7,9 @@ import {CaseHistoryDetailComponent} from "./case-history-detail/case-history-det
 import {ResultAnalyzeComponent} from "./result-analyze/result-analyze.component";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {NgaModule} from "../theme/components/nga.module";
+import {FormsModule} from "@angular/forms";
+import {BrowserModule} from "@angular/platform-browser";
+import {BsDatepickerModule} from "ngx-bootstrap";
 
 const pagesRoutes: Routes = [{
   path: 'pages',
@@ -22,7 +25,10 @@ const pagesRoutes: Routes = [{
 
 @NgModule({
   imports:[
+    BrowserModule,
+    FormsModule,
     NgxDatatableModule,
+    BsDatepickerModule.forRoot(),
     NgaModule.forRoot(),
     RouterModule.forRoot(pagesRoutes)
   ],

@@ -1,0 +1,33 @@
+.case-history-info{
+  width: 1000px;
+  margin: 0 auto;
+  background: #eeeeee;
+
+  .ch-row{
+    margin-bottom: 15px;
+  }
+
+  .sex-select{
+    select{
+      height: 48px;
+    }
+  }
+
+  textarea{
+    width: 970px;
+    height: 110px;
+    border: 0;
+    border-radius: 4px;
+  }
+
+  .next-step{
+    text-align: center;
+    padding: 20px 0;
+  }
+}
+.register-form{
+  padding: 18px 0;
+  h3{
+    text-align: center;
+  }
+}

@@ -1,0 +1,12 @@
+<label [for]="name" class="btn btn-primary btn-upload">选择文件</label>
+<span class="progressValue" *ngIf="progress>0">{{progress}}%</span>
+<span *ngIf="progress === 100">{{originalName}}</span>
+
+
+<input class="uploadFile" ngFileSelect [options]="options" (onUpload)="handleUpload($event)"
+       (beforeUpload)="beforeUpload($event)" [id]="name" type="file" [name]="name" [disabled]="!uploading && disable">
+<progress class="progress progress-striped progress-info" [value]="progress" max="100" *ngIf="progress > 0"></progress>
+
+
+
+
