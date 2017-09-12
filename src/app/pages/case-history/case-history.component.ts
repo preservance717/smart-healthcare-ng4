@@ -1,5 +1,6 @@
 import {Component, OnInit} from "@angular/core";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'case-history',
@@ -34,13 +35,15 @@ export class CaseHistoryComponent implements OnInit{
   private sizeLimit = 2097152;
   fileUploadUrl: string = '';
 
+  constructor(private router: Router) { }
+
   ngOnInit(){
     this.sex = this.sexOptions[0];
     this.bsConfig= Object.assign({}, {locale: this.locale},{containerClass: this.colorTheme});
   }
 
   submit(){
-
+    this.router.navigate(["/pages/ra"]);
   }
 
   onFileUploading() {
