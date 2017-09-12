@@ -26,13 +26,13 @@
       ],
       "scripts": [
         "../node_modules/jquery/dist/jquery.js",
-        "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
-        "../node_modules/bootstrap/dist/js/bootstrap.js",
         "../node_modules/cornerstone-core/dist/cornerstone.js",
         "../node_modules/cornerstone-math/dist/cornerstoneMath.js",
         "../node_modules/cornerstone-tools/dist/cornerstoneTools.js",
         "../node_modules/dicom-parser/dist/dicomParser.js",
-        "../src/assets/cornerstone/dist/cornerstoneWADOImageLoader.js"
+        "../lib/cornerstoneWADOImageLoader.js",
+        "../node_modules/jquery-slimscroll/jquery.slimscroll.js",
+        "../node_modules/bootstrap/dist/js/bootstrap.js"
       ],
       "environmentSource": "environments/environment.ts",
       "environments": {
