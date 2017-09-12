@@ -5,7 +5,7 @@ import {DashboardComponent} from "./dashboard/dashboard.component";
 import {CaseHistoryComponent} from "./case-history/case-history.component";
 import {CaseHistoryDetailComponent} from "./case-history-detail/case-history-detail.component";
 import {ResultAnalyzeComponent} from "./result-analyze/result-analyze.component";
-// import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {FormsModule} from "@angular/forms";
 import {BrowserModule} from "@angular/platform-browser";
 import {BsDatepickerModule} from "ngx-bootstrap";
@@ -27,7 +27,7 @@ const pagesRoutes: Routes = [{
   imports:[
     BrowserModule,
     FormsModule,
-    // NgxDatatableModule,
+    NgxDatatableModule,
     BsDatepickerModule.forRoot(),
     NgaModule.forRoot(),
     RouterModule.forRoot(pagesRoutes)
