@@ -1,0 +1,35 @@
+.patient-info {
+  .row {
+    margin: 10px 0;
+  }
+
+  .basic-info {
+    border: 1px solid #adadad;
+  }
+
+  .illness-state {
+    border: 1px solid #adadad;
+  }
+
+  .diagnosis {
+    border: 1px solid #adadad;
+    height: 80px;
+  }
+
+  .cure-advice {
+    border: 1px solid #adadad;
+    margin-bottom: 20px;
+    height: 80px;
+  }
+
+  .expert-diagnosis {
+    border: 1px solid #adadad;
+    margin-top: 20px;
+    height: 100px;
+
+  }
+  .expert-advice {
+    border: 1px solid #adadad;
+    height: 100px;
+  }
+}
