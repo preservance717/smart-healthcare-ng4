@@ -1,0 +1,68 @@
+<div class="actual-content">
+  <div class="actual-content-title">
+    <div class="actual-title-con">
+      <h2>病例列表</h2>
+    </div>
+    <div>
+      <div style="height: 60px">
+        <div style="float:left;width:50%;">
+          <h3>病例列表</h3>
+        </div>
+        <div style="float:left;width:50%;text-align: right;padding: 20px 0" class="new-case-btn">
+          <button routerLink="../ch">添加新病例</button>
+        </div>
+      </div>
+      <div class="actual-content-con">
+        <ngx-datatable
+          class="material"
+          [rows]="rows"
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [footerHeight]="50"
+          [rowHeight]="'auto'"
+          [limit]="8">
+          <ngx-datatable-column name="ID" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="名称" prop="name" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="性别" prop="sex" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="联系电话" prop="telephone" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="接尘工龄" prop="age" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="粉尘性质" prop="property" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column name="就医时间" prop="time" [width]="100">
+            <ng-template let-value="value" ngx-datatable-cell-template>
+              {{value}}
+            </ng-template>
+          </ngx-datatable-column>
+          <ngx-datatable-column>
+            <ng-template let-row="row" ngx-datatable-cell-template>
+              <button routerLink="../chd">查看</button>
+            </ng-template>
+          </ngx-datatable-column>
+        </ngx-datatable>
+      </div>
+    </div>
+  </div>
+</div>
