@@ -8,18 +8,18 @@ import {GlobalState} from "../../global.state";
  */
 @Injectable()
 export class LoginService {
+  loginUrl: string = '/login';
+
   constructor(private http: Http, private GlobalState:GlobalState) {
-    // console.log("login", this.MedicalExamState.MEBaseUrl);
+    this.loginUrl = this.GlobalState.MEBaseUrl + this.loginUrl;
   }
 
   login(username: string, password: string): Promise<any> {
-    let url = "http://localhost:8080/TM/TJ/login";
-    // let url;
     let body = {
-      username: username,
+      name: username,
       password: password
     };
-    return this.http.post(url, body).toPromise()
+    return this.http.post(this.loginUrl, body).toPromise()
       .then(response => response.json())
       .catch(this.handleError);
   }

@@ -34,12 +34,11 @@ export class Login {
   public onSubmit(event: any): void {
     this.submitted = true;
     if (this.form.valid) {
-      this.router.navigate(['/medical-exam/pages']);
       this._service.login(this.name.value, this.password.value).then(
         res => {
-          if (res.code === 0) {
-            let data = res.data;
-            this.GlobalState.user_type = '1';
+          if (res.aboolean === true) {
+            this.router.navigate(['/medical-exam/pages']);
+            this.GlobalState.user_type = res.data;
           } else {
           }
         }).catch(error => console.log(error))
