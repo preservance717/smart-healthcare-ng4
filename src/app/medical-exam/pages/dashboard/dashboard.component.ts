@@ -1,4 +1,5 @@
 import {Component, OnInit} from "@angular/core";
+import {GlobalState} from "../../../global.state";
 
 @Component({
   selector: 'dashboard',
@@ -153,9 +154,13 @@ export class DashboardComponent implements OnInit {
       "property": "3级",
       "time": "03/08/17 08:37"
     }
-  ]
+  ];
 
+  user_type: string = "";
+
+  constructor(private GlobalState:GlobalState){}
   ngOnInit() {
+    this.user_type = this.GlobalState.user_type;
   }
 
 }

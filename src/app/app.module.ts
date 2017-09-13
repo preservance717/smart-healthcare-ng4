@@ -1,15 +1,25 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import {PagesModule} from "./pages/pages.module";
+import {AppComponent} from './app.component';
 import {Routes, RouterModule} from "@angular/router";
-import {LoginModule} from "./login/login.module";
 import {HttpModule} from "@angular/http";
-// import {NgxDatatableModule} from "@swimlane/ngx-datatable";
+import {MedicalExamModule} from "./medical-exam/medical-exam.module";
+import {GlobalState} from "./global.state";
 
-const appRoutes:Routes = [
-  {path: '', redirectTo: 'login', pathMatch: 'full'},
+const appRoutes: Routes = [
+  {
+    path: '',
+    component: AppComponent,
+    children: [
+      {
+        path: 'medical-exam',
+        loadChildren: "app/medical-exam/medical-exam.module#MedicalExamModule"
+      },
+
+      {path: '', redirectTo: 'medical-exam', pathMatch: 'full'}
+      ]
+  }
   // { path: '**', redirectTo: 'login' }
 ];
 
@@ -20,12 +30,11 @@ const appRoutes:Routes = [
   imports: [
     BrowserModule,
     HttpModule,
-    // NgxDatatableModule,
     RouterModule.forRoot(appRoutes),
-    PagesModule,
-    LoginModule
+    // MedicalExamModule
   ],
-  providers: [],
+  providers: [GlobalState],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

@@ -4,7 +4,6 @@ import {ShFooterComponent} from "./components/sh-footer/sh-footer.component";
 import {FileUploadComponent} from "./components/uploadFile/file-upload.component";
 import {NgUploaderModule} from "ngx-uploader";
 import {CommonModule} from "@angular/common";
-import {BrowserModule} from "@angular/platform-browser";
 import {CornerstoneDirective} from "./directives/cornerstone.directive";
 import {CornerstoneService} from "./services/cornerstone.service";
 
@@ -28,7 +27,6 @@ const NGA_SERVICES = [
     ...NGA_DIRECTIVES
   ],
   imports: [
-    BrowserModule,
     CommonModule,
     NgUploaderModule
   ],

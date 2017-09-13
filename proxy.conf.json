@@ -1,0 +1,6 @@
+{
+  "/medical-exam": {
+    "target": "http://localhost:8080/TM/TJ",
+    "secure": false
+  }
+}

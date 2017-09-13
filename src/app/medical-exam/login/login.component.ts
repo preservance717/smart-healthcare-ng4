@@ -4,6 +4,7 @@ import {Component, ElementRef, HostListener, Renderer2} from '@angular/core';
 import {FormGroup, AbstractControl, FormBuilder, Validators} from '@angular/forms';
 import 'style-loader!./login.scss';
 import {ActivatedRoute, Router} from "@angular/router";
+import {GlobalState} from "../../global.state";
 
 @Component({
   selector: 'login',
@@ -19,7 +20,7 @@ export class Login {
   public submitted: boolean = false;
 
   constructor(private _service: LoginService, private fb: FormBuilder, private elementRef: ElementRef,
-              private route: ActivatedRoute, private router: Router, private Renderer: Renderer2) {
+              private route: ActivatedRoute, private router: Router, private Renderer: Renderer2, private GlobalState:GlobalState) {
 
     this.form = this.fb.group({
       'name': ['', Validators.compose([Validators.required, Validators.minLength(4)])],
@@ -33,11 +34,12 @@ export class Login {
   public onSubmit(event: any): void {
     this.submitted = true;
     if (this.form.valid) {
-      this.router.navigate(['/pages']);
+      this.router.navigate(['/medical-exam/pages']);
       this._service.login(this.name.value, this.password.value).then(
         res => {
           if (res.code === 0) {
             let data = res.data;
+            this.GlobalState.user_type = '1';
           } else {
           }
         }).catch(error => console.log(error))

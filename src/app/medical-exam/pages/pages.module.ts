@@ -1,4 +1,4 @@
-import {NgModule} from "@angular/core";
+import {NgModule, ModuleWithProviders} from "@angular/core";
 import {PagesComponent} from "./pages.component";
 import {Routes, RouterModule} from "@angular/router";
 import {DashboardComponent} from "./dashboard/dashboard.component";
@@ -7,9 +7,9 @@ import {CaseHistoryDetailComponent} from "./case-history-detail/case-history-det
 import {ResultAnalyzeComponent} from "./result-analyze/result-analyze.component";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
 import {FormsModule} from "@angular/forms";
-import {BrowserModule} from "@angular/platform-browser";
 import {BsDatepickerModule} from "ngx-bootstrap";
-import {NgaModule} from "../theme/nga.module";
+import {NgaModule} from "../../theme/nga.module";
+import {CommonModule} from "@angular/common";
 
 const pagesRoutes: Routes = [{
   path: 'pages',
@@ -23,14 +23,16 @@ const pagesRoutes: Routes = [{
   ]
 }];
 
+export const routing:ModuleWithProviders = RouterModule.forChild(pagesRoutes);
+
 @NgModule({
   imports:[
-    BrowserModule,
+    CommonModule,
     FormsModule,
     NgxDatatableModule,
     BsDatepickerModule.forRoot(),
     NgaModule.forRoot(),
-    RouterModule.forRoot(pagesRoutes)
+    routing
   ],
   declarations:[
     PagesComponent,

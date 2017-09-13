@@ -2,7 +2,7 @@
  * Created by gaole on 2017/9/8.
  */
 import {Component, OnInit} from "@angular/core";
-import {CornerstoneService} from "../../theme/services/cornerstone.service";
+import {CornerstoneService} from "../../../theme/services/cornerstone.service";
 
 @Component({
   selector: 'case-history-detail',
