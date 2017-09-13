@@ -21,7 +21,7 @@
               <div>
                 <img src="../../../assets/img/no-photo.png" alt="">
               </div>
-              <a  routerLink="../ra" class="btn">分析结果</a>
+              <a  routerLink="../ra" class="">分析结果</a>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@
           <div class="actual-content-con">
             <ngx-datatable
               class="material"
-              [rows]="rows"
+              [rows]="caseHistoryList"
               [columnMode]="'force'"
               [headerHeight]="50"
               [footerHeight]="50"
@@ -57,7 +57,7 @@
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="名称" prop="name" [width]="100">
+              <ngx-datatable-column name="名称" prop="patient_name" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
@@ -67,22 +67,22 @@
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="联系电话" prop="telephone" [width]="100">
+              <ngx-datatable-column name="联系电话" prop="tel" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="接尘工龄" prop="age" [width]="100">
+              <ngx-datatable-column name="接尘工龄" prop="dust_age" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="粉尘性质" prop="property" [width]="100">
+              <ngx-datatable-column name="粉尘性质" prop="dust_property" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="就医时间" prop="time" [width]="100">
+              <ngx-datatable-column name="就医时间" prop="created_on" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>

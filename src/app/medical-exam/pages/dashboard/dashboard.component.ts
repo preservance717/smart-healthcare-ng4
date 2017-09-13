@@ -1,23 +1,15 @@
 import {Component, OnInit} from "@angular/core";
 import {GlobalState} from "../../../global.state";
+import {DashboardService} from "./dashboard.service";
 
 @Component({
   selector: 'dashboard',
   templateUrl: 'dashboard.component.html',
-  styleUrls: ['dashboard.component.scss']
+  styleUrls: ['dashboard.component.scss'],
+  providers:[DashboardService]
 })
 
 export class DashboardComponent implements OnInit {
-  columns = [
-    {id: 'id', name: 'ID', prop: 'id'},
-    {id: 'name', name: '姓名', prop: 'name'},
-    {id: 'sex', name: '性别', prop: 'sex'},
-    {id: 'telephone', name: '联系电话', prop: 'telephone'},
-    {id: 'age', name: '接尘工龄', prop: 'age'},
-    {id: 'property', name: '粉尘性质', prop: 'property'},
-    {id: 'time', name: '就医时间', prop: 'time'},
-    {}
-  ];
   rows = [
     {
       "id": 1,
@@ -157,12 +149,23 @@ export class DashboardComponent implements OnInit {
   ];
 
   viewBtn: boolean = false;
+  caseHistoryList: any = [];
 
-  constructor(private GlobalState: GlobalState) {
+  constructor(private GlobalState: GlobalState, private _service:DashboardService) {
   }
 
   ngOnInit() {
     this.viewBtn = this.GlobalState.user_type == 'tj_expert';
+    this.getCaseHistoryList();
+  }
+
+  getCaseHistoryList(){
+    this._service.getCaseHistoryList()
+      .then(res=>{
+        if(res.aboolean === true){
+          // this.caseHistoryList = res.data
+        }
+      })
   }
 
 }
