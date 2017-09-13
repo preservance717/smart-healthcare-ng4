@@ -13,7 +13,7 @@
               <div>
                 <img src="../../../assets/img/no-photo.png" alt="">
               </div>
-              <button routerLink="../ch" disabled="user_type==='1'">新建病例</button>
+              <a routerLink="../ch" class="btn" [ngClass]="{'disabled': viewBtn}">新建病例</a>
             </div>
           </div>
           <div class="result-analyze">
@@ -21,7 +21,7 @@
               <div>
                 <img src="../../../assets/img/no-photo.png" alt="">
               </div>
-              <button  routerLink="../ra">分析结果</button>
+              <a  routerLink="../ra" class="btn">分析结果</a>
             </div>
           </div>
         </div>
@@ -40,7 +40,7 @@
               <h3>病例列表</h3>
             </div>
             <div style="float:left;width:50%;text-align: right;padding: 20px 0" class="new-case-btn">
-              <button routerLink="../ch" disabled="user_type==='1'">添加新病例</button>
+              <a routerLink="../ch" class="btn" [ngClass]="{'disabled': viewBtn}">添加新病例</a>
             </div>
           </div>
           <div class="actual-content-con">

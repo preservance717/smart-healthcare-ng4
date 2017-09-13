@@ -156,11 +156,13 @@ export class DashboardComponent implements OnInit {
     }
   ];
 
-  user_type: string = "";
+  viewBtn: boolean = false;
 
-  constructor(private GlobalState:GlobalState){}
+  constructor(private GlobalState: GlobalState) {
+  }
+
   ngOnInit() {
-    this.user_type = this.GlobalState.user_type;
+    this.viewBtn = this.GlobalState.user_type == 'tj_expert';
   }
 
 }

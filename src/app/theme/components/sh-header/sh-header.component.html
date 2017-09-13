@@ -5,7 +5,7 @@
     </div>
     <div class="login">
       <a href="" (click)="toggleDB()">首页</a>
-      <a href="" (click)="toggleCH()">新建病例</a>
+      <a href="" (click)="toggleCH()" class="btn" [ngClass]="{'disabled':viewBtn}">新建病例</a>
       <a href="" (click)="toggleRA()">分析结果</a>
     </div>
   </div>
