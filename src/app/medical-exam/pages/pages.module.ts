@@ -6,45 +6,46 @@ import {CaseHistoryComponent} from "./case-history/case-history.component";
 import {CaseHistoryDetailComponent} from "./case-history-detail/case-history-detail.component";
 import {ResultAnalyzeComponent} from "./result-analyze/result-analyze.component";
 import {NgxDatatableModule} from "@swimlane/ngx-datatable";
-import {FormsModule} from "@angular/forms";
 import {BsDatepickerModule} from "ngx-bootstrap";
 import {NgaModule} from "../../theme/nga.module";
 import {CommonModule} from "@angular/common";
+import {ReactiveFormsModule, FormsModule} from "@angular/forms";
 
 const pagesRoutes: Routes = [{
   path: 'pages',
-  component:PagesComponent,
-  children:[
-    {path:'db', component:DashboardComponent},
-    {path:'ch', component:CaseHistoryComponent},
-    {path:'chd', component:CaseHistoryDetailComponent},
-    {path:'ra', component:ResultAnalyzeComponent},
-    {path:'',redirectTo:'db',pathMatch:'full'}
+  component: PagesComponent,
+  children: [
+    {path: 'db', component: DashboardComponent},
+    {path: 'ch', component: CaseHistoryComponent},
+    {path: 'chd', component: CaseHistoryDetailComponent},
+    {path: 'ra', component: ResultAnalyzeComponent},
+    {path: '', redirectTo: 'db', pathMatch: 'full'}
   ]
 }];
 
-export const routing:ModuleWithProviders = RouterModule.forChild(pagesRoutes);
+export const routing: ModuleWithProviders = RouterModule.forChild(pagesRoutes);
 
 @NgModule({
-  imports:[
+  imports: [
     CommonModule,
+    ReactiveFormsModule,
     FormsModule,
     NgxDatatableModule,
     BsDatepickerModule.forRoot(),
     NgaModule.forRoot(),
     routing
   ],
-  declarations:[
+  declarations: [
     PagesComponent,
     DashboardComponent,
     CaseHistoryComponent,
     CaseHistoryDetailComponent,
     ResultAnalyzeComponent
   ],
-  providers:[]
+  providers: []
 
 })
 
-export class PagesModule{
+export class PagesModule {
 
 }
