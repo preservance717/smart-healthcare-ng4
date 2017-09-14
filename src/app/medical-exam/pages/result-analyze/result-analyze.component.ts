@@ -1,157 +1,50 @@
-import {Component} from "@angular/core";
+import {Component, OnInit} from "@angular/core";
+import {ResultAnalyzeService} from "./result-analyze.service";
 
 @Component({
   selector:'result-analyze',
   templateUrl:'result-analyze.component.html',
-  styleUrls:['result-analyze.component.scss']
+  styleUrls:['result-analyze.component.scss'],
+  providers:[ResultAnalyzeService]
 })
 
-export class ResultAnalyzeComponent{
-  columns = [
-    {id: 'id', name: 'ID', prop: 'id'},
-    {id: 'name', name: '姓名', prop: 'name'},
-    {id: 'sex', name: '性别', prop: 'sex'},
-    {id: 'age', name: '接尘工龄', prop: 'age'},
-    {id: 'property', name: '粉尘性质', prop: 'property'},
-    {id: 'telephone', name: '上传医生', prop: 'telephone'},
-    {id: 'time', name: '上传时间', prop: 'time'},
-    {}
-  ];
+export class ResultAnalyzeComponent implements OnInit{
   rows = [
     {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "name": "yga",
+      "patientName": "Ethel Price",
+      "pid": "女",
+      "status": "完成",
+      "analysisResult": "13",
+      "reviewResult": "3级",
+      "id":1
     },
     {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
-    },
-    {
-      "id": 1,
-      "name": "Ethel Price",
-      "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "name": "gtrrer",
+      "patientName": "arwe Price",
+      "pid": "男",
+      "status": "分析中",
+      "analysisResult": "无",
+      "reviewResult": "3级"
     }
-  ]
+  ];
+
+  constructor(private _service:ResultAnalyzeService){}
+
+  ngOnInit(){
+    this.getCaseHistoryList();
+  }
+
+  getCaseHistoryList(){
+    this._service.getCaseHistoryList()
+      .then(res=>{
+        if(res.aboolean === true){
+          // this.caseHistoryList = res.data
+        }
+      })
+  }
+
+  getRow(row){
+    sessionStorage.setItem("taskId", row.id);
+  }
 }

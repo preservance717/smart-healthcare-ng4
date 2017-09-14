@@ -87,7 +87,7 @@ export class CaseHistoryComponent implements OnInit {
 
     this.patientName = this.caseHistoryForm.controls['patientName'];
     this.sex = this.caseHistoryForm.controls['sex'];
-    this.age = this.caseHistoryForm.controls['age'];
+    // this.age = this.caseHistoryForm.controls['age'];
     this.pid = this.caseHistoryForm.controls['pid'];
     this.tel = this.caseHistoryForm.controls['tel'];
     this.job = this.caseHistoryForm.controls['job'];

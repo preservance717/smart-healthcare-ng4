@@ -6,7 +6,7 @@ import {Injectable} from "@angular/core";
 
 @Injectable()
 export class GlobalState{
-  MEBaseUrl = "http://localhost:8080/TM/TJ";
+  MEBaseUrl = "http://localhost:4000/TM/TJ";
   user_type: string = '';
 
   private _data = new Subject<Object>();
