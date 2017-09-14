@@ -21,11 +21,14 @@ export class CaseHistoryDetailComponent implements OnInit {
   reviewResult:string;
   reviewComment:string;
 
+  userType:string;
+
   constructor(public csS: CornerstoneService,
               private _service: CaseHistoryDetailService,
               private _state: GlobalState) {
     // this.patientId = sessionStorage.getItem("patientId");
     this.taskId = sessionStorage.getItem("taskId");
+    this.userType = sessionStorage.getItem("user_type")
   }
 
   ngOnInit() {

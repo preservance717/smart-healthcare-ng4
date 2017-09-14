@@ -38,7 +38,7 @@ export class Login {
         res => {
           if (res.aboolean === true) {
             this.router.navigate(['/medical-exam/pages']);
-            this.GlobalState.user_type = res.data;
+            sessionStorage.setItem("user_type", res.data);
           } else {
           }
         }).catch(error => console.log(error))

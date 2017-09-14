@@ -155,7 +155,7 @@ export class DashboardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.viewBtn = this.GlobalState.user_type == 'tj_expert';
+    this.viewBtn = sessionStorage.getItem("user_type") == 'tj_expert';
     setTimeout(this.getCaseHistoryList(),1000)
   }
 
