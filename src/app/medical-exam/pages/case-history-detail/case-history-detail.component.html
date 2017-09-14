@@ -84,7 +84,7 @@
         </div>
       </div>
     </div>
-    <div class="submitInfo">
+    <div class="submitInfo" *ngIf="userType == 'tj_expert'">
       <button (click)="updateTaskDetail()">提交</button>
     </div>
   </div>
