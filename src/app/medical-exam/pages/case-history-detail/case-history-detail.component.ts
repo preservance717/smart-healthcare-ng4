@@ -18,6 +18,8 @@ export class CaseHistoryDetailComponent implements OnInit {
   // patientId: string = '';
   taskId: string = '';
   patientMDInfo:any;
+  reviewResult:string;
+  reviewComment:string;
 
   constructor(public csS: CornerstoneService,
               private _service: CaseHistoryDetailService,
@@ -37,6 +39,18 @@ export class CaseHistoryDetailComponent implements OnInit {
       .then(res => {
         this.patientMDInfo = res.data;
         // console.log("res", res.data);
+      })
+  }
+
+  updateTaskDetail(){
+    let updateTaskInfo = {
+      id: this.taskId,
+      reviewComment: this.reviewComment,
+      reviewResult: this.reviewResult
+    };
+    this._service.updateTaskDetail(updateTaskInfo)
+      .then(res=>{
+        console.log(res);
       })
   }
 }
