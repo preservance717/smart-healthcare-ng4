@@ -8,14 +8,14 @@
         <div class="register-form">
           <h3>尘肺患者信息登记表</h3>
         </div>
-        <form [formGroup]="caseHistoryForm" (ngSubmit)="onSubmit(caseHistoryForm.value)">
+        <form [formGroup]="caseHistoryForm" (ngSubmit)="onSubmit(caseHistoryForm.value)" *ngIf="caseHistoryForm">
           <div class="container" [ngSwitch]="step">
             <div *ngSwitchDefault>
               <div class="row ch-row">
                 <div class="col">
                   <div class="input-group input-group-lg">
                     <input type="text" class="form-control" placeholder="请输入姓名" aria-describedby="sizing-addon1"
-                           [formControl]="patient_name">
+                           formControlName="patientName">
                     <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"
                                                                           aria-hidden="true"></i></span>
                   </div>
@@ -23,7 +23,7 @@
                 <div class="col">
                   <div class="input-group input-group-lg">
                     <input type="text" class="form-control" placeholder="请输入身份证号" aria-describedby="sizing-addon1"
-                           [formControl]="pid">
+                           formControlName="pid" >
                     <span class="input-group-addon" id="sizing-addon4"><i class="fa fa-id-card-o"
                                                                           aria-hidden="true"></i></span>
                   </div>
@@ -32,7 +32,7 @@
               <div class="row ch-row">
                 <div class="col">
                   <div class="sex-select">
-                    <select class="form-control" [formControl]="sex">
+                    <select class="form-control" formControlName="sex">
                       <option value="" selected>请选择性别</option>
                       <option value="男">男</option>
                       <option value="女">女</option>
@@ -42,7 +42,7 @@
                 <div class="col">
                   <div class="input-group input-group-lg">
                     <input placeholder="请选择出生日期" type="text" class="form-control" bsDatepicker #dp="bsDatepicker"
-                           [bsConfig]="bsConfig" [formControl]="age" (bsValueChange)="valueChange($event)">
+                           [bsConfig]="bsConfig" formControlName="age" (bsValueChange)="valueChange($event)">
                     <span class="input-group-addon" id="sizing-addon5" (click)="dp.show()"><i class="fa fa-calendar"
                                                                                               aria-hidden="true"></i></span>
                   </div>
@@ -50,7 +50,7 @@
                 <div class="col">
                   <div class="input-group input-group-lg">
                     <input type="text" class="form-control" placeholder="请输入电话" aria-describedby="sizing-addon1"
-                           [formControl]="tel">
+                           formControlName="tel">
                     <span class="input-group-addon" id="sizing-addon2"><i class="fa fa-mobile"
                                                                           aria-hidden="true"></i></span>
                   </div>
@@ -59,7 +59,7 @@
               <div class="row ch-row">
                 <div class="col-6">
                   <div class="sex-select">
-                    <select class="form-control" [formControl]="job">
+                    <select class="form-control" formControlName="job">
                       <option value="" selected>请选择工种</option>
                       <option value="工人1">工人1</option>
                       <option value="工人2">工人2</option>
@@ -68,7 +68,7 @@
                 </div>
                 <div class="col-3">
                   <div class="sex-select">
-                    <select class="form-control" [formControl]="dust_age">
+                    <select class="form-control" formControlName="dustAge">
                       <option value="" selected>请选择工龄</option>
                       <option value="5">5</option>
                       <option value="10">10</option>
@@ -77,7 +77,7 @@
                 </div>
                 <div class="col-3">
                   <div class="sex-select">
-                    <select class="form-control" [formControl]="dust_property">
+                    <select class="form-control" formControlName="dustProperty">
                       <option value="" selected>请选择粉尘性质</option>
                       <option value="1">1</option>
                       <option value="2">2</option>
@@ -86,10 +86,10 @@
                 </div>
               </div>
               <div class="career">
-                <textarea type="text" placeholder="    请输入您的职业史" [formControl]="job_history"></textarea>
+                <textarea type="text" placeholder="    请输入您的职业史" formControlName="jobHistory" ></textarea>
               </div>
               <div class="medicine-history">
-                <textarea type="text" placeholder="    请输入您的既往病史" [formControl]="medical_history"></textarea>
+                <textarea type="text" placeholder="    请输入您的既往病史" formControlName="medicalHistory"></textarea>
               </div>
               <div class="next-step">
                 <button type="button" class="btn btn-primary" (click)="step='secondStep'">下一步</button>
@@ -99,7 +99,7 @@
               <div class="row">
                 <label class="col-sm-2 control-label">上传化验单</label>
                 <div class="col-sm-10">
-                  <file-upload [url]="fileUploadUrl" [name]="labSheet" [fileSizeLimit]="sizeLimit"
+                  <file-upload [url]="fileUploadUrl" [name]="'file1'" [fileSizeLimit]="sizeLimit"
                                [disable]="disableUpload"
                                (onFinishUploading)="onFinishUploading($event)"
                                (onUploading)="onFileUploading($event)"></file-upload>
@@ -118,7 +118,7 @@
               <div class="row">
                 <label class="col-sm-2 control-label">上传X光片</label>
                 <div class="col-sm-10">
-                  <file-upload [url]="fileUploadUrl" [name]="x_ray" [fileSizeLimit]="sizeLimit"
+                  <file-upload [url]="fileUploadUrl" [name]="fileName" [fileSizeLimit]="sizeLimit"
                                [disable]="disableUpload"
                                (onFinishUploading)="onFinishUploading($event)"
                                (onUploading)="onFileUploading($event)"></file-upload>

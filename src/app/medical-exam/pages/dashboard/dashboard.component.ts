@@ -13,138 +13,138 @@ export class DashboardComponent implements OnInit {
   rows = [
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     },
     {
       "id": 1,
-      "name": "Ethel Price",
+      "patient_name": "Ethel Price",
       "sex": "女",
-      "telephone": "1234345654",
-      "age": "13",
-      "property": "3级",
-      "time": "03/08/17 08:37"
+      "tel": "1234345654",
+      "dust_age": "13",
+      "dust_property": "3级",
+      "created_on": "03/08/17 08:37"
     }
   ];
 
@@ -156,16 +156,22 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit() {
     this.viewBtn = this.GlobalState.user_type == 'tj_expert';
-    this.getCaseHistoryList();
+    setTimeout(this.getCaseHistoryList(),1000)
   }
 
   getCaseHistoryList(){
     this._service.getCaseHistoryList()
       .then(res=>{
         if(res.aboolean === true){
-          // this.caseHistoryList = res.data
+          this.caseHistoryList = res.data
         }
       })
+  }
+  newCaseHistory(){
+    sessionStorage.removeItem("patientId");
+  }
+  getPatientId(row){
+    sessionStorage.setItem("patientId", row.id);
   }
 
 }

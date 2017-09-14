@@ -13,7 +13,7 @@
               <div>
                 <img src="../../../assets/img/no-photo.png" alt="">
               </div>
-              <a routerLink="../ch" class="btn" [ngClass]="{'disabled': viewBtn}">新建病例</a>
+              <a routerLink="../ch" class="btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">新建病例</a>
             </div>
           </div>
           <div class="result-analyze">
@@ -52,12 +52,12 @@
               [footerHeight]="50"
               [rowHeight]="'auto'"
               [limit]="8">
-              <ngx-datatable-column name="ID" [width]="100">
+              <ngx-datatable-column name="ID" prop="id" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="名称" prop="patient_name" [width]="100">
+              <ngx-datatable-column name="名称" prop="patientName" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
@@ -72,17 +72,17 @@
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="接尘工龄" prop="dust_age" [width]="100">
+              <ngx-datatable-column name="接尘工龄" prop="dustAge" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="粉尘性质" prop="dust_property" [width]="100">
+              <ngx-datatable-column name="粉尘性质" prop="dustProperty" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column name="就医时间" prop="created_on" [width]="100">
+              <ngx-datatable-column name="就医时间" prop="createdOn" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
                   {{value}}
                 </ng-template>
@@ -90,7 +90,7 @@
               <ngx-datatable-column>
                 <ng-template let-row="row" ngx-datatable-cell-template>
                   <button>查看</button>
-                  <button routerLink="../ch">修改</button>
+                  <button routerLink="../ch" (click)="getPatientId(row)">修改</button>
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>
