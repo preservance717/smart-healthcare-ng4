@@ -1,9 +1,10 @@
-import {Component, OnInit, OnChanges} from "@angular/core";
+import {Component, OnInit, ElementRef, ViewChild, AfterViewInit} from "@angular/core";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {Router} from "@angular/router";
 import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms";
 import {CaseHistoryService} from "./case-history.service";
 import {PatientInfo} from "./patient.model";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'case-history',
@@ -12,7 +13,9 @@ import {PatientInfo} from "./patient.model";
   providers: [CaseHistoryService]
 })
 
-export class CaseHistoryComponent implements OnInit {
+export class CaseHistoryComponent implements OnInit,AfterViewInit {
+  @ViewChild('personId') el:ElementRef;
+
   locale = "en";
   bsConfig: Partial<BsDatepickerConfig>;
   colorTheme = 'theme-default';
@@ -46,6 +49,7 @@ export class CaseHistoryComponent implements OnInit {
   viewBtn: boolean = true;
 
   medicalHistoryList:any;
+  pidValidate:boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder, private _service: CaseHistoryService) {
     this.patientId = sessionStorage.getItem("patientId") || '';
@@ -54,11 +58,21 @@ export class CaseHistoryComponent implements OnInit {
 
   ngOnInit() {
     this.bsConfig = Object.assign({}, {locale: this.locale}, {containerClass: this.colorTheme});
+
     if (this.patientId) {
       this.getPatientInfo();
     } else {
       this.initForm();
     }
+  }
+
+  ngAfterViewInit() {
+    Observable.fromEvent(this.el.nativeElement,'keyup')
+      .map((e:any) => e.target.value)
+      .filter((text:any) => text.length>1)
+      .debounceTime(700)
+      .map((query:string)=>this._service.validatePID(query))
+      .subscribe((res)=>{console.log("res",res);this.pidValidate = true},(err:any)=>{console.log(err)},()=>{console.log('complete')})
   }
 
   updateForm() {

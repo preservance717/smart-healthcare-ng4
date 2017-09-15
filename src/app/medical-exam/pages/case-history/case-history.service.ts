@@ -1,7 +1,8 @@
 import {Injectable} from "@angular/core";
-import {Http, RequestOptions, Headers} from "@angular/http";
+import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import 'rxjs/add/operator/toPromise';
 import {GlobalState} from "../../../global.state";
+import {Observable} from "rxjs";
 
 @Injectable()
 export class CaseHistoryService {
@@ -24,7 +25,7 @@ export class CaseHistoryService {
       .catch(this.handleError);
   }
 
-  getPatientInfo(id:string):Promise<any>{
+  getPatientInfo(id: string): Promise<any> {
     this.findOnePatientUrl = `${this.findOnePatientUrl}\/${id}`;
 
     return this.http.get(this.findOnePatientUrl).toPromise()
@@ -32,13 +33,20 @@ export class CaseHistoryService {
       .catch(this.handleError);
   }
 
-  updateCaseHistory(updateInfo:any):Promise<any>{
+  updateCaseHistory(updateInfo: any): Promise<any> {
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
     return this.http.post(this.updateCaseHistoryUrl, JSON.stringify(updateInfo), options).toPromise()
       .then(response => response.json())
       .catch(this.handleError);
+  }
+
+  validatePID(query:string):Observable<any>{
+    console.log("query",query);
+    return this.http
+      .get(`api/heroes/?name=${query}`)
+      .map(response => response.json());
   }
 
   private handleError(error: any): Promise<any> {
