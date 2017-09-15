@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, OnChanges} from "@angular/core";
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {Router} from "@angular/router";
 import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms";
@@ -27,6 +27,7 @@ export class CaseHistoryComponent implements OnInit {
   pid: AbstractControl;
   tel: AbstractControl;
   job: AbstractControl;
+  complication: AbstractControl;
   jobHistory: AbstractControl;
   medicalHistory: AbstractControl;
   dustAge: AbstractControl;
@@ -41,6 +42,10 @@ export class CaseHistoryComponent implements OnInit {
 
   patientId: string = '';
   patientInfo: PatientInfo;
+
+  viewBtn: boolean = true;
+
+  medicalHistoryList:any;
 
   constructor(private router: Router, private fb: FormBuilder, private _service: CaseHistoryService) {
     this.patientId = sessionStorage.getItem("patientId") || '';
@@ -64,6 +69,7 @@ export class CaseHistoryComponent implements OnInit {
       "pid": [this.patientInfo.pid, Validators.compose([])],
       "tel": [this.patientInfo.tel, Validators.compose([])],
       "job": [this.patientInfo.job, Validators.compose([])],
+      "complication": [this.patientInfo.complication, Validators.compose([])],
       "jobHistory": [this.patientInfo.jobHistory, Validators.compose([])],
       "medicalHistory": [this.patientInfo.medicalHistory, Validators.compose([])],
       "dustAge": [this.patientInfo.dustAge, Validators.compose([])],
@@ -79,6 +85,7 @@ export class CaseHistoryComponent implements OnInit {
       "pid": ['', Validators.compose([])],
       "tel": ['', Validators.compose([])],
       "job": ['', Validators.compose([])],
+      "complication": ['', Validators.compose([])],
       "jobHistory": ['', Validators.compose([])],
       "medicalHistory": ['', Validators.compose([])],
       "dustAge": ['', Validators.compose([])],
@@ -91,6 +98,7 @@ export class CaseHistoryComponent implements OnInit {
     this.pid = this.caseHistoryForm.controls['pid'];
     this.tel = this.caseHistoryForm.controls['tel'];
     this.job = this.caseHistoryForm.controls['job'];
+    this.complication = this.caseHistoryForm.controls['complication'];
     this.jobHistory = this.caseHistoryForm.controls['jobHistory'];
     this.medicalHistory = this.caseHistoryForm.controls['medicalHistory'];
     this.dustAge = this.caseHistoryForm.controls['dustAge'];
@@ -98,7 +106,8 @@ export class CaseHistoryComponent implements OnInit {
   }
 
   onSubmit(event: any) {
-    if(!this.patientId){
+    console.log("medicalHistoryList submit", this.medicalHistoryList);
+    if (!this.patientId) {
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
       this._service.newCaseHistory(this.caseHistoryInfo)
         .then(res => {
@@ -106,11 +115,11 @@ export class CaseHistoryComponent implements OnInit {
             this.router.navigate(["/medical-exam/pages/ra"]);
           }
         });
-    }else {
-      let updateInfo = {patientHistoryId:this.patientInfo.id,xRayId:this.caseHistoryInfo.file};
+    } else {
+      let updateInfo = {patientHistoryId: this.patientInfo.id, xRayId: this.caseHistoryInfo.file};
       this._service.updateCaseHistory(updateInfo)
-        .then(res=>{
-          if(res.aboolean){
+        .then(res => {
+          if (res.aboolean) {
             this.router.navigate(["/medical-exam/pages/ra"]);
           }
         })
@@ -130,7 +139,6 @@ export class CaseHistoryComponent implements OnInit {
     this.disableUpload = false;
   }
 
-
   getPatientInfo() {
     if (this.patientId) {
       this._service.getPatientInfo(this.patientId)
@@ -140,4 +148,8 @@ export class CaseHistoryComponent implements OnInit {
         })
     }
   }
+
+  // getMedicalHistory(medicalHistoryList:any){
+  //   console.log("medicalHistoryList",medicalHistoryList);
+  // }
 }

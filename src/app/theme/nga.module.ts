@@ -6,11 +6,15 @@ import {NgUploaderModule} from "ngx-uploader";
 import {CommonModule} from "@angular/common";
 import {CornerstoneDirective} from "./directives/cornerstone.directive";
 import {CornerstoneService} from "./services/cornerstone.service";
+import { MedicalHistoryComponent } from './components/medical-history/medical-history.component';
+import {BsDatepickerModule} from "ngx-bootstrap";
+import {FormsModule} from "@angular/forms";
 
 const NGA_COMPONENTS = [
   ShHeaderComponent,
   ShFooterComponent,
-  FileUploadComponent
+  FileUploadComponent,
+  MedicalHistoryComponent
 ];
 
 const NGA_DIRECTIVES = [
@@ -24,11 +28,13 @@ const NGA_SERVICES = [
 @NgModule({
   declarations: [
     ...NGA_COMPONENTS,
-    ...NGA_DIRECTIVES
+    ...NGA_DIRECTIVES,
   ],
   imports: [
     CommonModule,
-    NgUploaderModule
+    FormsModule,
+    NgUploaderModule,
+    BsDatepickerModule.forRoot(),
   ],
   exports: [
     ...NGA_COMPONENTS,

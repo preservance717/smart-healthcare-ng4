@@ -9,6 +9,7 @@ export class PatientInfo{
   public pid:string ;
   public tel:string ;
   public job:string ;
+  public complication:string;
   public jobHistory: string;
   public medicalHistory: string;
   public dustAge: string;
