@@ -32,8 +32,6 @@ export class CornerstoneDirective{
         this.displayImage(imageData);
       }
       // console.log(this.imageList);
-
-
     }
   }
 

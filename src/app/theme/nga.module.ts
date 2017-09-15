@@ -4,7 +4,7 @@ import {ShFooterComponent} from "./components/sh-footer/sh-footer.component";
 import {FileUploadComponent} from "./components/uploadFile/file-upload.component";
 import {NgUploaderModule} from "ngx-uploader";
 import {CommonModule} from "@angular/common";
-import {CornerstoneDirective} from "./directives/cornerstone.directive";
+// import {CornerstoneDirective} from "./directives/cornerstone.directive";
 import {CornerstoneService} from "./services/cornerstone.service";
 import { MedicalHistoryComponent } from './components/medical-history/medical-history.component';
 import {BsDatepickerModule} from "ngx-bootstrap";
@@ -18,7 +18,7 @@ const NGA_COMPONENTS = [
 ];
 
 const NGA_DIRECTIVES = [
-  CornerstoneDirective
+  // CornerstoneDirective
 ];
 
 const NGA_SERVICES = [
