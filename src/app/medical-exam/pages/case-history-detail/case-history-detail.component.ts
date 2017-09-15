@@ -23,6 +23,8 @@ export class CaseHistoryDetailComponent implements OnInit {
 
   userType:string;
 
+  fullScreenBtn:boolean = false;
+
   constructor(public csS: CornerstoneService,
               private _service: CaseHistoryDetailService,
               private _state: GlobalState) {
@@ -55,5 +57,15 @@ export class CaseHistoryDetailComponent implements OnInit {
       .then(res=>{
         console.log(res);
       })
+  }
+
+  reviewFullScreen(){
+    this.fullScreenBtn = true;
+    this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
+      .subscribe(res => this.imageData = res);
+  }
+
+  backDetail(){
+    this.fullScreenBtn = false;
   }
 }

@@ -1,4 +1,4 @@
-<div class="actual-content">
+<div class="actual-content" *ngIf="fullScreenBtn == false">
   <div class="actual-content-title">
     <div class="actual-title-con">
       <h2>尘肺患者诊断书</h2>
@@ -44,7 +44,10 @@
       <!--</div>-->
     <!--</div>-->
     <div class="x-ray">
-      <div id="dicomWrapper"
+      <div>
+        <a class="btn" (click)="reviewFullScreen()">查看全图</a>
+      </div>
+      <div id="dicomWrapper2"
            class='disable-selection noIbar'
            unselectable='on'
            onselectstart='return false;'
@@ -52,7 +55,7 @@
 
         <div cornerstone
              [image]="imageData"
-             id="dicomImage"
+             id="dicomImage2"
              style="height: 500px;">
         </div>
 
@@ -86,6 +89,23 @@
     </div>
     <div class="submitInfo" *ngIf="userType == 'tj_expert'">
       <button (click)="updateTaskDetail()">提交</button>
+    </div>
+  </div>
+</div>
+
+<div class="dicom-fullscreen" *ngIf="fullScreenBtn">
+  <div>
+    <a class="btn back" (click)="backDetail()"><i class="fa fa-undo" aria-hidden="true"></i>返回详情</a>
+  </div>
+  <div id="dicomWrapper"
+       class='disable-selection noIbar'
+       unselectable='on'
+       onselectstart='return false;'
+       onmousedown='return false;'>
+    <div cornerstone
+         [image]="imageData"
+         id="dicomImage"
+         style="position:absolute; top:0; bottom: 0;left:0;right:0;">
     </div>
   </div>
 </div>

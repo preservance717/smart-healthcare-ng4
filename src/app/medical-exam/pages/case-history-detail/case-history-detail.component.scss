@@ -34,3 +34,20 @@
     margin: 20px;
   }
 }
+
+.dicom-fullscreen{
+  position: absolute;
+  left:0;
+  top:0;
+  bottom:0;
+  right: 0;
+  overflow: hidden;
+  border:1px solid red;
+  .back{
+    position: absolute;
+    left:0;
+    top:0;
+    color: #fff;
+    z-index: 1
+  }
+}
