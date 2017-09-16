@@ -46,7 +46,6 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
     event.preventDefault();
 
     const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
-    // console.log(event);
 
     if (delta > 0) {
       this.currentIndex++;
@@ -75,7 +74,6 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit() {
-    console.log("afterview", this.fullDcmEle);
 
     this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
       .subscribe(res => {
@@ -97,7 +95,6 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
   }
 
   displayImage(image) {
-    console.log("disokaty", this.dcmEle);
     cornerstone.displayImage(this.dcmEle.nativeElement, image);
   }
 
@@ -110,7 +107,6 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
     this._service.reviewDetail(this.taskId)
       .then(res => {
         this.patientMDInfo = res.data;
-        // console.log("res", res.data);
       })
   }
 
@@ -122,15 +118,13 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
     };
     this._service.updateTaskDetail(updateTaskInfo)
       .then(res => {
-        console.log(res);
+        // console.log(res);
       })
   }
 
   reviewFullScreen() {
     this.fullScreenBtn = true;
     setTimeout(() => {
-      console.log('sdsds')
-      console.log("after", this.fullDcmEle);
       cornerstone.enable(this.fullDcmEle.nativeElement);
 
       this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
@@ -144,7 +138,6 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
 
             if (this.imageData.imageId) {
               // this.displayImage(this.imageData);
-              // console.log("oninit",this.dcmEle);
               cornerstone.displayImage(this.fullDcmEle.nativeElement, this.imageData);
               $('#samplesPerPixel').text(this.imageData.data.uint16('x00280002'));
               $('#columns').text(this.imageData.data.uint16('x00280011'));
