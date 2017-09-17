@@ -4,7 +4,22 @@
 }
 
 .progressValue{
-  position:absolute;
-  left:260px;
-  top:57%;
+  position: relative;
+  left: 90px;
+  top: 30px;
+}
+.progress{
+  display: -webkit-box;
+  /* display: flex; */
+  overflow: hidden;
+  /* font-size: 0.75rem; */
+  /* line-height: 1rem; */
+  text-align: center;
+  /* background-color: #e9ecef; */
+  border-radius: 0.25rem;
+  width: 400px;
+}
+
+.progress::-webkit-progress-value {
+  background-color: #1d68b3;
 }

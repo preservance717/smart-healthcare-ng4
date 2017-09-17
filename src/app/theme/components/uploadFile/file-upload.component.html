@@ -5,7 +5,7 @@
 
 <input class="uploadFile" ngFileSelect [options]="options" (onUpload)="handleUpload($event)"
        (beforeUpload)="beforeUpload($event)" [id]="name" type="file" [name]="name" [disabled]="!uploading && disable">
-<progress class="progress progress-striped progress-info" [value]="progress" max="100" *ngIf="progress > 0"></progress>
+<progress class="progress" [value]="progress" max="100" *ngIf="progress > 0"></progress>
 
 
 
