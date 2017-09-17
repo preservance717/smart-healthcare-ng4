@@ -1,13 +1,19 @@
 <div class="auth-main">
-<div id="header"></div>
 
 <div id="content">
-
-  <img src="../../../assets/img/app/login&register/ct-Img.png" width="100%" height="100%"/>
-
+  <div class="login-background">
+    <img src="../../../assets/img/app/login&register/login-background.png" width="100%" height="100%"/>
+  </div>
   <div id="LoginPart">
 
     <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+      <div class="user-type">
+        <nav>
+          <li [ngClass]="{'expert-selected':showExpertBtn}" (click)="showExpert()">专家</li>
+          <li class="doctor" [ngClass]="{'doctor-selected':showDoctorBtn}" (click)="showDoctor()">医生</li>
+        </nav>
+      </div>
 
       <div id="us" class="baseline" [ngClass]="{'has-error': (!name.valid && name.touched), 'has-success': (name.valid && name.touched)}">
 
@@ -26,9 +32,9 @@
 
     <div class="handle">
       <button [disabled]="!form.valid" type="submit"  id="login">登录</button>
-      <a id="register" routerLink="/register" >注册</a>
-      <a class="lost" href="javascript:;">忘记密码</a>
-      <a class="find" href="javascript:;">点击找回</a>
+      <!--<a id="register" routerLink="/register" >注册</a>-->
+      <!--<a class="lost" href="javascript:;">忘记密码</a>-->
+      <!--<a class="find" href="javascript:;">点击找回</a>-->
     </div>
 
     </form>
