@@ -1,4 +1,34 @@
-.actual-content-con{
+a:hover{
+  color:#fff;
+}
+.actual-content-con {
   clear: left;
-  padding:0;
+  padding: 0;
+  margin: 0 30px;
+}
+
+.new-case-btn {
+  background: #1d68b3;
+}
+
+.result {
+  background: #f5fafe;
+  .actual-content {
+    margin: 0 auto;
+  }
+  padding: 40px 0;
+  .result-content {
+    background: #ffffff;
+    margin-top: 30px;
+
+    .row {
+      .col {
+        margin: 20px 30px;
+      }
+    }
+  }
+}
+
+.review-btn{
+  background: #5bc0de;
 }
