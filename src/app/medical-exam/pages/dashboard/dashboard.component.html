@@ -40,7 +40,7 @@
           <div class="row">
             <div class="col"><h3>病例列表</h3></div>
             <div class="col" style="text-align: right">
-              <a routerLink="../ch" class="btn new-case-btn" [ngClass]="{'disabled': viewBtn}">
+              <a routerLink="../ch" class="btn new-case-btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">
                 <i class="fa fa-plus" aria-hidden="true"></i> 添加新病例</a>
             </div>
           </div>

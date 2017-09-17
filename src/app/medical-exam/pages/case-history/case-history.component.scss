@@ -1,7 +1,11 @@
 .case-history-info{
   width: 1000px;
-  margin: 0 auto;
+  margin: 40px auto;
   background: #eeeeee;
+
+  .upload-case-history{
+    background: #1d68b3 ;
+  }
 
   .ch-row{
     margin-bottom: 15px;

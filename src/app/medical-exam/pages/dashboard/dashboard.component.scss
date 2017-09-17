@@ -1,6 +1,9 @@
 .case-history-operation {
   width: auto;
   height: 400px;
+  a{
+    color:#1d68b3;
+  }
   .actual-content-core {
     clear: left;
     margin: 20px 0 0 0;
@@ -36,6 +39,7 @@
   .actual-content{
     padding-top: 20px;
     padding-bottom: 50px;
+    margin-bottom: 0px;
   }
   .actual-content-core{
     margin: 0;

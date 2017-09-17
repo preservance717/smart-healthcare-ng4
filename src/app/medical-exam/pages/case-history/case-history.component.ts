@@ -14,7 +14,7 @@ import {Observable} from "rxjs";
 })
 
 export class CaseHistoryComponent implements OnInit,AfterViewInit {
-  @ViewChild('personId') el:ElementRef;
+  @ViewChild('personId') el: ElementRef;
 
   locale = "en";
   bsConfig: Partial<BsDatepickerConfig>;
@@ -48,8 +48,8 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
 
   viewBtn: boolean = true;
 
-  medicalHistoryList:any;
-  pidValidate:boolean = false;
+  medicalHistoryList: any;
+  pidValidate: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder, private _service: CaseHistoryService) {
     this.patientId = sessionStorage.getItem("patientId") || '';
@@ -64,15 +64,24 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     } else {
       this.initForm();
     }
+    // console.log("el",this.el);
   }
 
   ngAfterViewInit() {
-    Observable.fromEvent(this.el.nativeElement,'keyup')
-      .map((e:any) => e.target.value)
-      .filter((text:any) => text.length>1)
+    // console.log("el after", this.el);
+    Observable.fromEvent(this.el.nativeElement, 'keyup')
+      .map((e: any) => e.target.value)
+      .filter((text: any) => text.length > 1)
       .debounceTime(700)
-      .map((query:string)=>this._service.validatePID(query))
-      .subscribe((res)=>{console.log("res",res);this.pidValidate = true},(err:any)=>{console.log(err)},()=>{console.log('complete')})
+      .map((query: string) => this._service.validatePID(query))
+      .subscribe((res) => {
+        console.log("res", res);
+        this.pidValidate = true
+      }, (err: any) => {
+        console.log(err)
+      }, () => {
+        console.log('complete')
+      })
   }
 
   updateForm() {
