@@ -1,17 +1,54 @@
-.case-history-list,
 .case-history-operation {
   width: auto;
   height: 400px;
+  .actual-content-core {
+    clear: left;
+    margin: 20px 0 0 0;
+    .new-case-history {
+      float: left;
+      border: 1px solid lightblue;
+      width: 400px;
+      padding: 20px;
+      margin-left: 172px;
+      border-radius: 5px;
+      .new-case-con{
+        text-align: center;
+      }
+    }
+    .result-analyze {
+      float: left;
+      border: 1px solid lightblue;
+      width: 400px;
+      padding: 20px;
+      margin-left: 56px;
+      margin-right: 172px;
+      border-radius: 5px;
+      .new-case-con{
+        text-align: center;
+      }
+    }
+  }
 }
 
 .case-history-list {
   height: auto;
-  background: #eee;
-}
-
-.actual-content {
-  width: 1200px;
-  margin: 0 auto;
+  background: #f5fafe;
+  .actual-content{
+    padding-top: 20px;
+    padding-bottom: 50px;
+  }
+  .actual-content-core{
+    margin: 0;
+    background: #ffffff;
+    .row{
+      .col{
+        margin: 20px 30px;
+      }
+    }
+  }
+  .actual-content-con{
+    margin: 0 30px;
+  }
 }
 
 .actual-content-title {
@@ -23,30 +60,26 @@
   }
 }
 .actual-title-con{
-  padding: 35px 0;
-}
-.actual-content-core {
-  clear: left;
-  .new-case-history {
-    float: left;
-    border: 1px solid lightblue;
-    width: 570px;
-    .new-case-con{
-      text-align: center;
-    }
-  }
-  .result-analyze {
-    float: left;
-    border: 1px solid lightblue;
-    width: 570px;
-    margin-left: 56px;
-    .new-case-con{
-      text-align: center;
-    }
-  }
+  //padding: 35px 0;
 }
 
 .actual-content-con{
   clear: left;
   padding:0;
+}
+.modify-btn,
+.new-case-btn{
+  background:#1d68b3;
+}
+.review-btn{
+  background: #5bc0de;
+}
+
+a:hover{
+  color: #ffffff;
+}
+
+.dustProperty{
+  width: 48px;
+  text-align: center;
 }

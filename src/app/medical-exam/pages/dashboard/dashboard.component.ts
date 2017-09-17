@@ -1,4 +1,4 @@
-import {Component, OnInit} from "@angular/core";
+import {Component, OnInit, ElementRef, ViewChild, Renderer2} from "@angular/core";
 import {GlobalState} from "../../../global.state";
 import {DashboardService} from "./dashboard.service";
 
@@ -10,6 +10,7 @@ import {DashboardService} from "./dashboard.service";
 })
 
 export class DashboardComponent implements OnInit {
+  @ViewChild('dustProperty') dustProperty: ElementRef;
   rows = [
     {
       "id": 1,
@@ -17,7 +18,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -26,7 +27,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -35,7 +36,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -44,7 +45,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -53,7 +54,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -62,7 +63,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -71,7 +72,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -80,7 +81,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -89,7 +90,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -98,7 +99,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -107,7 +108,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -116,7 +117,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -125,7 +126,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -134,7 +135,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     },
     {
@@ -143,7 +144,7 @@ export class DashboardComponent implements OnInit {
       "sex": "女",
       "tel": "1234345654",
       "dust_age": "13",
-      "dust_property": "3级",
+      "dustProperty": "3级",
       "created_on": "03/08/17 08:37"
     }
   ];
@@ -151,12 +152,19 @@ export class DashboardComponent implements OnInit {
   viewBtn: boolean = false;
   caseHistoryList: any = [];
 
-  constructor(private GlobalState: GlobalState, private _service:DashboardService) {
+  constructor(private GlobalState: GlobalState, private _service:DashboardService,private renderer:Renderer2) {
   }
 
   ngOnInit() {
     this.viewBtn = sessionStorage.getItem("user_type") == 'tj_expert';
-    setTimeout(this.getCaseHistoryList(),1000)
+    this.getCaseHistoryList();
+    // this.rows.forEach(row=>{
+      // if(row.dustProperty.split("级")[0]-0>1){
+      //   this.renderer.setStyle(this.dustProperty.nativeElement,'background','#000')
+      // }else {
+      //   this.renderer.setStyle(this.dustProperty.nativeElement,'background','#fff')
+      // }
+    // })
   }
 
   getCaseHistoryList(){

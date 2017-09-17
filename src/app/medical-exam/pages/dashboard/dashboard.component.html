@@ -5,23 +5,24 @@
         <div class="actual-content-title">
           <div class="actual-title-con">
             <h2>病情建立及分析</h2>
+            <img src="../../../../assets/img/app/underline.png" alt="">
           </div>
         </div>
         <div class="actual-content-core">
           <div class="new-case-history">
             <div class="new-case-con">
-              <div>
-                <img src="../../../assets/img/no-photo.png" alt="">
+              <div style="margin-bottom: 20px">
+                <img src="../../../assets/img/app/dashboard/new-case-history.jpg" alt="">
               </div>
               <a routerLink="../ch" class="btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">新建病例</a>
             </div>
           </div>
           <div class="result-analyze">
             <div class="new-case-con">
-              <div>
-                <img src="../../../assets/img/no-photo.png" alt="">
+              <div style="margin-bottom: 10px">
+                <img src="../../../assets/img/app/dashboard/result-analyze.jpg" alt="">
               </div>
-              <a  routerLink="../ra" class="">分析结果</a>
+              <a routerLink="../ra" class="">分析结果</a>
             </div>
           </div>
         </div>
@@ -32,21 +33,21 @@
         <div class="actual-content-title">
           <div class="actual-title-con">
             <h2>病例列表</h2>
+            <img src="../../../../assets/img/app/underline.png" alt="">
           </div>
         </div>
-        <div class="actual-content-core" style="padding: 20px">
-          <div style="height: 60px">
-            <div style="float:left;width:50%;">
-              <h3>病例列表</h3>
-            </div>
-            <div style="float:left;width:50%;text-align: right;padding: 20px 0" class="new-case-btn">
-              <a routerLink="../ch" class="btn" [ngClass]="{'disabled': viewBtn}">添加新病例</a>
+        <div class="actual-content-core">
+          <div class="row">
+            <div class="col"><h3>病例列表</h3></div>
+            <div class="col" style="text-align: right">
+              <a routerLink="../ch" class="btn new-case-btn" [ngClass]="{'disabled': viewBtn}">
+                <i class="fa fa-plus" aria-hidden="true"></i> 添加新病例</a>
             </div>
           </div>
           <div class="actual-content-con">
             <ngx-datatable
               class="material"
-              [rows]="caseHistoryList"
+              [rows]="rows"
               [columnMode]="'force'"
               [headerHeight]="50"
               [footerHeight]="50"
@@ -79,7 +80,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column name="粉尘性质" prop="dustProperty" [width]="100">
                 <ng-template let-value="value" ngx-datatable-cell-template>
-                  {{value}}
+                  <div #dustProperty class="dustProperty">{{value}}</div>
                 </ng-template>
               </ngx-datatable-column>
               <ngx-datatable-column name="就医时间" prop="createdOn" [width]="100">
@@ -87,10 +88,11 @@
                   {{value}}
                 </ng-template>
               </ngx-datatable-column>
-              <ngx-datatable-column>
-                <ng-template let-row="row" ngx-datatable-cell-template>
-                  <button>查看</button>
-                  <button routerLink="../ch" (click)="getPatientId(row)">修改</button>
+              <ngx-datatable-column [width]="170">
+                <ng-template let-row="row" ngx-datatable-cell-template >
+                  <a class="btn review-btn"><i class="fa fa-eye" aria-hidden="true"></i> 查看</a>
+                  <a class="btn modify-btn" routerLink="../ch" (click)="getPatientId(row)">
+                    <i class="fa fa-pencil" aria-hidden="true"></i> 修改</a>
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>
