@@ -1,18 +1,27 @@
 .patient-info {
+  border-top:1px solid #eeeeee;
+  margin-top: 30px;
+  .container{
+    margin-top: 40px;
+  }
   .row {
     margin: 10px 0;
   }
 
-  .basic-info {
-    border: 1px solid #adadad;
+  .basic-info{
+    .name{
+      text-decoration:underline;
+      text-decoration-color: #5bc0de;
+    }
+    .basic-info-detail{
+      margin-top: 20px;
   }
-
-  .illness-state {
-    border: 1px solid #adadad;
+    .row{
+      border-bottom: 1px solid #eeeeee;
+    }
   }
 
   .diagnosis {
-    border: 1px solid #adadad;
     height: 80px;
     margin-bottom: 20px;
   }
@@ -27,7 +36,7 @@
   }
   .expert-advice {
     border: 1px solid #adadad;
-    height: 100px;
+    //height: 100px;
   }
   .submitInfo{
     text-align: center;
@@ -58,4 +67,16 @@
     top:0;
     z-index: 1;
   }
+}
+
+.review-full-btn{
+  text-align: right;
+  color: #ffffff;
+  position: absolute;
+  bottom: 1px;
+  right: 20px;
+}
+
+.review-btn{
+  background: #5bc0de;
 }

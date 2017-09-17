@@ -74,7 +74,10 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
   }
 
   ngAfterViewInit() {
+    this.initImage();
+  }
 
+  initImage(){
     this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
       .subscribe(res => {
         this.imageData = res;
@@ -157,5 +160,6 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
 
   backDetail() {
     this.fullScreenBtn = false;
+    this.initImage();
   }
 }
