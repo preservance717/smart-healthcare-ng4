@@ -88,7 +88,7 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
           }
 
           if (this.imageData.imageId) {
-            // this.displayImage(this.imageData);
+            this.displayImage(this.imageData);
             // console.log("oninit",this.dcmEle);
             cornerstone.displayImage(this.dcmEle.nativeElement, this.imageData);
           }

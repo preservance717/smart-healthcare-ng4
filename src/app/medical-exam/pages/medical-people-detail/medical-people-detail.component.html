@@ -1,0 +1,132 @@
+<div>
+  <div class="actual-content">
+    <div class="actual-content-title">
+      <div class="actual-title-con">
+        <h2>病人详情页</h2>
+        <img src="../../../../assets/img/app/underline.png" alt="">
+      </div>
+    </div>
+    <div class="sick">
+      <div class="sick-people-info">
+        <div class="container">
+          <div class="row ch-row">
+            <div class="col">姓名：孙婷婷</div>
+            <div class="col">性别：女</div>
+            <div class="col">工龄：5年</div>
+            <div class="col">性质：3级</div>
+          </div>
+          <div class="row ch-row">
+            <div class="col">扼要病情：患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>
+          </div>
+        </div>
+      </div>
+      <div class="sick-people-xRay">
+       <accordion [closeOthers]="true">
+        <accordion-group #group *ngFor="let e of demoList">
+          <div accordion-heading (click)="openAccordion()">
+            2017-05-12 - 2017-06-13
+            <i class="pull-right float-xs-right glyphicon"
+               [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
+          </div>
+          <div>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <div class="x-ray">
+                    <div id="dicomWrapper"
+                         class='disable-selection noIbar'
+                         unselectable='on'
+                         onselectstart='return false;'
+                         onmousedown='return false;'>
+
+                      <div #dcmEle id="dicomImage"
+                           style="height: 300px;">
+                      </div>
+                    </div>
+                    <div class="review-full-btn">
+                      <a class="btn"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col">
+                  <div class="basic-info">
+                    <h3><span class="name">孙婷婷</span>的诊断书</h3>
+                    <div class="basic-info-detail">
+                      <div class="row">
+                        <div class="col-3">姓名</div>
+                        <div class="col-9">孙婷婷</div>
+                      </div>
+                      <div class=row><div class="col-3">性别</div><div class="col-9">女</div> </div>
+                      <div class=row><div class="col-3">年龄</div><div class="col-9">48岁</div></div>
+                      <div class=row><div class="col-3">病例号</div><div class="col-9">10092736492</div> </div>
+                      <div class=row><div class="col-3">工龄</div><div class="col-9">5年</div> </div>
+                      <div class=row><div class="col-3">性质</div><div class="col-9">3级</div></div>
+                      <div class="row">
+                        <div class="col-3">扼要病情</div>
+                        <div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>
+                      </div>
+                      <div class="row"><div class="col-3">分析建议</div><div class="col-9">三级甲等肺尘病</div></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </accordion-group>
+
+         <!--<accordion-group #group >-->
+           <!--<div accordion-heading (click)="openAccordion()">-->
+             <!--2017-01-12 - 2017-02-13-->
+             <!--<i class="pull-right float-xs-right glyphicon"-->
+                <!--[ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>-->
+           <!--</div>-->
+           <!--<div>-->
+             <!--<div class="container">-->
+               <!--<div class="row">-->
+                 <!--<div class="col">-->
+                   <!--<div class="x-ray">-->
+                     <!--<div id="dicomWrapper1"-->
+                          <!--class='disable-selection noIbar'-->
+                          <!--unselectable='on'-->
+                          <!--onselectstart='return false;'-->
+                          <!--onmousedown='return false;'>-->
+
+                       <!--<div #dcmEle id="dicomImage1"-->
+                            <!--style="height: 300px;">-->
+                       <!--</div>-->
+                     <!--</div>-->
+                     <!--<div class="review-full-btn">-->
+                       <!--<a class="btn"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>-->
+                     <!--</div>-->
+                   <!--</div>-->
+                 <!--</div>-->
+                 <!--<div class="col">-->
+                   <!--<div class="basic-info">-->
+                     <!--<h3><span class="name">孙婷婷</span>的诊断书</h3>-->
+                     <!--<div class="basic-info-detail">-->
+                       <!--<div class="row">-->
+                         <!--<div class="col-3">姓名</div>-->
+                         <!--<div class="col-9">孙婷婷</div>-->
+                       <!--</div>-->
+                       <!--<div class=row><div class="col-3">性别</div><div class="col-9">女</div> </div>-->
+                       <!--<div class=row><div class="col-3">年龄</div><div class="col-9">48岁</div></div>-->
+                       <!--<div class=row><div class="col-3">病例号</div><div class="col-9">10092736492</div> </div>-->
+                       <!--<div class=row><div class="col-3">工龄</div><div class="col-9">5年</div> </div>-->
+                       <!--<div class=row><div class="col-3">性质</div><div class="col-9">3级</div></div>-->
+                       <!--<div class="row">-->
+                         <!--<div class="col-3">扼要病情</div>-->
+                         <!--<div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>-->
+                       <!--</div>-->
+                       <!--<div class="row"><div class="col-3">分析建议</div><div class="col-9">三级甲等肺尘病</div></div>-->
+                     <!--</div>-->
+                   <!--</div>-->
+                 <!--</div>-->
+               <!--</div>-->
+             <!--</div>-->
+           <!--</div>-->
+         <!--</accordion-group>-->
+        </accordion>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,29 @@
+.sick-people-info{
+  margin: 40px 0;
+  border: 1px solid #eeeeee;
+  .ch-row{
+    margin: 20px 0;
+  }
+}
+
+.review-full-btn{
+  text-align: right;
+  color: #ffffff;
+  position: absolute;
+  bottom: 1px;
+  right: 20px;
+}
+
+.basic-info{
+  .name{
+    text-decoration:underline;
+    text-decoration-color: #5bc0de;
+  }
+  .basic-info-detail{
+    margin-top: 20px;
+  }
+  .row{
+    border-bottom: 1px solid #eeeeee;
+  }
+}
+
