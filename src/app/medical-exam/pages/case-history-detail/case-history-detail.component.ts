@@ -8,6 +8,7 @@ import {GlobalState} from "../../../global.state";
 import * as $ from "jquery";
 
 declare const cornerstone;
+declare const cornerstoneTools;
 
 @Component({
   selector: 'case-history-detail',
@@ -91,6 +92,14 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
             this.displayImage(this.imageData);
             // console.log("oninit",this.dcmEle);
             cornerstone.displayImage(this.dcmEle.nativeElement, this.imageData);
+            cornerstoneTools.mouseInput.enable(this.dcmEle.nativeElement);
+            cornerstoneTools.mouseWheelInput.enable(this.dcmEle.nativeElement);
+
+            // Enable all tools we want to use with this this.dcmEle.nativeElement
+            cornerstoneTools.wwwc.activate(this.dcmEle.nativeElement, 1); // ww/wc is the default tool for left mouse button
+            cornerstoneTools.pan.activate(this.dcmEle.nativeElement, 2); // pan is the default tool for middle mouse button
+            cornerstoneTools.zoom.activate(this.dcmEle.nativeElement, 4); // zoom is the default tool for right mouse button
+            cornerstoneTools.zoomWheel.activate(this.dcmEle.nativeElement); // zoom is the default tool for middle mouse wheel
           }
         }
       });
@@ -142,6 +151,14 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
             if (this.imageData.imageId) {
               // this.displayImage(this.imageData);
               cornerstone.displayImage(this.fullDcmEle.nativeElement, this.imageData);
+              cornerstoneTools.mouseInput.enable(this.fullDcmEle.nativeElement);
+              cornerstoneTools.mouseWheelInput.enable(this.fullDcmEle.nativeElement);
+
+              // Enable all tools we want to use with this this.fullDcmEle.nativeElement
+              cornerstoneTools.wwwc.activate(this.fullDcmEle.nativeElement, 1); // ww/wc is the default tool for left mouse button
+              cornerstoneTools.pan.activate(this.fullDcmEle.nativeElement, 2); // pan is the default tool for middle mouse button
+              cornerstoneTools.zoom.activate(this.fullDcmEle.nativeElement, 4); // zoom is the default tool for right mouse button
+              cornerstoneTools.zoomWheel.activate(this.fullDcmEle.nativeElement); // zoom is the default tool for middle mouse wheel
               $('#transferSyntax').text(this.getTransferSyntax());
               $('#sopClass').text(this.getSopClass());
               $('#samplesPerPixel').text(this.imageData.data.uint16('x00280002'));
