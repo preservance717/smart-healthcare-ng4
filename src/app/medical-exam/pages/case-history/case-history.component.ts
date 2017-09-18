@@ -64,19 +64,21 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     } else {
       this.initForm();
     }
-    // console.log("el",this.el);
   }
 
   ngAfterViewInit() {
-    // console.log("el after", this.el);
     Observable.fromEvent(this.el.nativeElement, 'keyup')
       .map((e: any) => e.target.value)
-      .filter((text: any) => text.length > 1)
+      .filter((text: any) => text.length > 15)
       .debounceTime(700)
       .map((query: string) => this._service.validatePID(query))
+      .switch()
       .subscribe((res) => {
-        console.log("res", res);
-        this.pidValidate = true
+        if(res.aboolean==true){
+          this.pidValidate = false;
+        }else {
+          this.pidValidate = true;
+        }
       }, (err: any) => {
         console.log(err)
       }, () => {

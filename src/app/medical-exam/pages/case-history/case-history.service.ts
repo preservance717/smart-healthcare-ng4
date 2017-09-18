@@ -9,11 +9,13 @@ export class CaseHistoryService {
   newCaseHistoryUrl: string = '/newPatient';
   updateCaseHistoryUrl: string = '/newXTask';
   findOnePatientUrl: string = '/selectOnePatient';
+  pidValidateUrl: string = '/checkPid';
 
   constructor(private http: Http, private GlobalState: GlobalState) {
     this.newCaseHistoryUrl = this.GlobalState.MEBaseUrl + this.newCaseHistoryUrl;
     this.updateCaseHistoryUrl = this.GlobalState.MEBaseUrl + this.updateCaseHistoryUrl;
     this.findOnePatientUrl = this.GlobalState.MEBaseUrl + this.findOnePatientUrl;
+    this.pidValidateUrl = this.GlobalState.MEBaseUrl + this.pidValidateUrl;
   }
 
   newCaseHistory(caseHistoryInfo: any): Promise<any> {
@@ -42,11 +44,17 @@ export class CaseHistoryService {
       .catch(this.handleError);
   }
 
-  validatePID(query:string):Observable<any>{
-    console.log("query",query);
+  validatePID(query: any): Observable<any> {
+    console.log("post");
+    let headers = new Headers({'Content-Type': 'application/json'});
+    let options = new RequestOptions({headers: headers});
+
     return this.http
-      .get(`api/heroes/?name=${query}`)
-      .map(response => response.json());
+      .post(this.pidValidateUrl, JSON.stringify({pid: query}), options)
+      .map(response => {
+        console.log("service", response.json);
+        return response.json()
+      });
   }
 
   private handleError(error: any): Promise<any> {
