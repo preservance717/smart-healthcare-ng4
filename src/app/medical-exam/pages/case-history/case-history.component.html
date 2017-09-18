@@ -7,10 +7,11 @@
       </div>
       <div class="case-history-info">
         <div class="register-form">
-          <h3>尘肺患者信息登记表</h3>
+          <span style="font-size: 1.75rem;">尘肺患者信息登记表</span>
         </div>
         <form [formGroup]="caseHistoryForm" (ngSubmit)="onSubmit(caseHistoryForm.value)" *ngIf="caseHistoryForm">
           <div class="container" [ngSwitch]="step">
+            <a *ngSwitchDefault href="" class="btn upload-case-history" [ngClass]="{'disabled':viewBtn}">上传电子病历</a>
             <div *ngSwitchDefault>
               <div class="row ch-row">
                 <div class="col">
@@ -99,7 +100,7 @@
                   </div>
                 </div>
                 <div class="col-6">
-                  <a href="" class="btn upload-case-history" [ngClass]="{'disabled':viewBtn}">上传电子病历</a>
+
                 </div>
               </div>
               <div class="career">
