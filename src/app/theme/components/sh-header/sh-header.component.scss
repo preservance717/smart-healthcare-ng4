@@ -1,7 +1,13 @@
+
+a {
+  text-decoration: none;
+}
+
 .sh-header {
   width: auto;
   height: 200px;
-  background: lightskyblue;
+  //background: lightskyblue;
+  background: url("../../../../assets/img/app/header.jpg");
   .sh-top {
     height: 40px;
     color: #efefef;
@@ -25,8 +31,8 @@
     color: #efefef;
     text-align: center;
     margin-top: 30px;
-    h3 {
-      margin-top: 15px;
+    h4 {
+      margin-top: 20px;
     }
   }
 }
