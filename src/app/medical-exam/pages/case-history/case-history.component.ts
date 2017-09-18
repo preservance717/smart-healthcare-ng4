@@ -26,7 +26,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
 
   patientName: AbstractControl;
   sex: AbstractControl;
-  age: AbstractControl;
+  birthday: any;
   pid: AbstractControl;
   tel: AbstractControl;
   job: AbstractControl;
@@ -96,7 +96,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       "job": [this.patientInfo.job, Validators.compose([])],
       "complication": [this.patientInfo.complication, Validators.compose([])],
       "jobHistory": [this.patientInfo.jobHistory, Validators.compose([])],
-      "medicalHistory": [this.patientInfo.medicalHistory, Validators.compose([])],
+      "medicalHistories": [this.patientInfo.medicalHistory, Validators.compose([])],
       "dustAge": [this.patientInfo.dustAge, Validators.compose([])],
       "dustProperty": [this.patientInfo.dustProperty, Validators.compose([])],
     });
@@ -131,9 +131,9 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onSubmit(event: any) {
-    console.log("medicalHistoryList submit", this.medicalHistoryList);
     if (!this.patientId) {
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
+      this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories:this.medicalHistoryList});
       this._service.newCaseHistory(this.caseHistoryInfo)
         .then(res => {
           if (res.aboolean === true) {
@@ -174,7 +174,25 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     }
   }
 
-  // getMedicalHistory(medicalHistoryList:any){
-  //   console.log("medicalHistoryList",medicalHistoryList);
-  // }
+  updateDateRange(event) {
+    this.caseHistoryInfo["birthday"] = this.date2String(event.date);
+  }
+
+  private date2String(date: any): string {
+    if (Object.keys(date).length === 0 || date === null || date === undefined || (date.year == 0&&date.month==0&&date.day==0)) {
+      return null;
+    }
+
+    let str = date.year + '-';
+    if (date.month < 10) {
+      str += '0';
+    }
+    str += date.month + '-';
+
+    if (date.day < 10) {
+      str += '0';
+    }
+    str += date.day;
+    return str;
+  }
 }

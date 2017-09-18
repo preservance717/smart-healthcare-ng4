@@ -44,10 +44,11 @@
                 </div>
                 <div class="col">
                   <div class="input-group input-group-lg">
-                    <input placeholder="请选择出生日期" type="text" class="form-control" bsDatepicker #dp="bsDatepicker"
-                           [bsConfig]="bsConfig" formControlName="age" (bsValueChange)="valueChange($event)">
-                    <span class="input-group-addon" id="sizing-addon5" (click)="dp.show()"><i class="fa fa-calendar"
-                                                                                              aria-hidden="true"></i></span>
+                    <datepicker (onSelected)="updateDateRange($event)"></datepicker>
+                    <!--<input placeholder="请选择出生日期" type="text" class="form-control" bsDatepicker #dp="bsDatepicker"-->
+                           <!--[bsConfig]="bsConfig" formControlName="age" (bsValueChange)="valueChange($event)">-->
+                    <!--<span class="input-group-addon" id="sizing-addon5" (click)="dp.show()"><i class="fa fa-calendar"-->
+                                                                                              <!--aria-hidden="true"></i></span>-->
                   </div>
                 </div>
                 <div class="col">

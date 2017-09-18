@@ -14,38 +14,51 @@ export class MedicalHistoryComponent implements OnInit {
   @Input('medicalHistory') medicalHistory: any[];
   @Output() medicalHistoryChange = new EventEmitter();
 
-  bsConfig: Partial<BsDatepickerConfig>;
-  colorTheme = 'theme-default';
   medicalHistoryList: any = [];
-  _bsRangeValue: any = [new Date(2017, 7, 4), new Date(2037, 7, 20)];
+
   medicalHistoryDesc:string;
+  startdate:string;
+  enddate:string;
 
   constructor() {
   }
 
   ngOnInit() {
-    this.bsConfig = Object.assign({},{containerClass: this.colorTheme},{locale:'zh-cn'});
+    // this.bsConfig = Object.assign({},{containerClass: this.colorTheme},{locale:'zh-cn'});
   }
 
-  get bsRangeValue(): any {
-    return this._bsRangeValue;
-  }
-
-  set bsRangeValue(v: any) {
-    console.log("v",v);
-    this._bsRangeValue = v;
-  }
 
   addMedicalHistory() {
-    console.log(this.bsRangeValue[0], "bssss", this.medicalHistoryDesc);
     this.medicalHistoryList.push({
-      desc: this.medicalHistoryDesc,
-      timeZone: `${this.bsRangeValue[0]} - ${this.bsRangeValue[1]}`
+      description: this.medicalHistoryDesc,
+      startTime:this.startdate,
+      endTime:this.enddate
     });
     this.medicalHistoryDesc = '';
-    this._bsRangeValue = [new Date(), new Date()];
     this.medicalHistoryChange.emit(this.medicalHistoryList);
     console.log(this.medicalHistoryList);
   }
 
+  updateDateRange(event) {
+    this.startdate = this.date2String(event.beginDate);
+    this.enddate = this.date2String(event.endDate);
+  }
+
+  private date2String(date: any): string {
+    if (Object.keys(date).length === 0 || date === null || date === undefined || (date.year == 0&&date.month==0&&date.day==0)) {
+      return null;
+    }
+
+    let str = date.year + '-';
+    if (date.month < 10) {
+      str += '0';
+    }
+    str += date.month + '-';
+
+    if (date.day < 10) {
+      str += '0';
+    }
+    str += date.day;
+    return str;
+  }
 }

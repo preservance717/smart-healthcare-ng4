@@ -9,12 +9,18 @@ import {CornerstoneService} from "./services/cornerstone.service";
 import { MedicalHistoryComponent } from './components/medical-history/medical-history.component';
 import {BsDatepickerModule} from "ngx-bootstrap";
 import {FormsModule} from "@angular/forms";
+import {DateRangePickerComponent} from "./components/datepicker/date-range-picker.component";
+import { MyDatePickerModule } from 'mydatepicker';
+import { MyDateRangePickerModule } from 'mydaterangepicker';
+import {DatePickerComponent} from "./components/datepicker/datepicker.component";
 
 const NGA_COMPONENTS = [
   ShHeaderComponent,
   ShFooterComponent,
   FileUploadComponent,
-  MedicalHistoryComponent
+  MedicalHistoryComponent,
+  DateRangePickerComponent,
+  DatePickerComponent
 ];
 
 const NGA_DIRECTIVES = [
@@ -35,6 +41,8 @@ const NGA_SERVICES = [
     FormsModule,
     NgUploaderModule,
     BsDatepickerModule.forRoot(),
+    MyDatePickerModule,
+    MyDateRangePickerModule
   ],
   exports: [
     ...NGA_COMPONENTS,

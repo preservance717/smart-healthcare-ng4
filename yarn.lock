@@ -3402,6 +3402,14 @@ multicast-dns@^6.0.1:
     dns-packet "^1.0.1"
     thunky "^0.1.0"
 
+mydatepicker@^1.1.15:
+  version "1.10.2"
+  resolved "https://registry.yarnpkg.com/mydatepicker/-/mydatepicker-1.10.2.tgz#19e9469c00a39f1e09c737953ea5dc1b385c8e06"
+
+mydaterangepicker@^1.0.17:
+  version "1.4.3"
+  resolved "https://registry.yarnpkg.com/mydaterangepicker/-/mydaterangepicker-1.4.3.tgz#cc12553dcc4dce109c5b486d7569e24041f3fb86"
+
 nan@^2.3.0, nan@^2.3.2:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
