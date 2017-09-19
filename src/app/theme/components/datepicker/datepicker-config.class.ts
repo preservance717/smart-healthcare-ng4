@@ -9,7 +9,7 @@ export const CONFIGS: any = {
     dateFormat: 'yyyy-mm-dd',
     firstDayOfWeek: 'mo',
     sunHighlight: true,
-    height: '34px',
+    height: '46px',
     width: '260px',
     selectionTxtFontSize: '16px',
     editableDateField: false,

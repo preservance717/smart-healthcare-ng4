@@ -72,7 +72,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     Observable.fromEvent(this.el.nativeElement, 'keyup')
       .map((e: any) => e.target.value)
       .filter((text: any) => text.length > 15)
-      .debounceTime(700)
+      // .debounceTime(200)
       .map((query: string) => this._service.validatePID(query))
       .switch()
       .subscribe((res) => {

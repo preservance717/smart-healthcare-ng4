@@ -4,7 +4,7 @@
       <input type="text" placeholder="请输入病史" class="form-control" [(ngModel)]="medicalHistoryDesc">
     </div>
   </div>
-  <div class="col-5">
+  <div class="col-4">
     <div class="input-group input-group-lg">
       <date-range-picker (onSelected)="updateDateRange($event)"></date-range-picker>
       <!--<input placeholder="请选择病史的时间段" type="text" class="form-control" bsDaterangepicker #dpr="bsDaterangepicker" [bsConfig]="bsConfig"-->
@@ -15,7 +15,7 @@
   </div>
   <div class="col-3">
     <div class="input-group input-group-lg">
-      <a class="btn" (click)="addMedicalHistory()">添加</a>
+      <a class="btn add-btn" (click)="addMedicalHistory()">添加</a>
     </div>
   </div>
 </div>

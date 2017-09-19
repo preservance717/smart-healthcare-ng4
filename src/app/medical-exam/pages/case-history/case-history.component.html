@@ -62,29 +62,51 @@
               </div>
               <div class="row ch-row">
                 <div class="col-6">
-                  <div class="sex-select">
-                    <select class="form-control" formControlName="job">
-                      <option value="" selected>请选择工种</option>
-                      <option value="工人1">工人1</option>
-                      <option value="工人2">工人2</option>
-                    </select>
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="请输入工种" aria-describedby="sizing-addon1"
+                           formControlName="job">
+                    <!--<span class="input-group-addon" id="sizing-addon3"><i class="fa fa-mobile"-->
+                    <!--aria-hidden="true"></i></span>-->
                   </div>
+                  <!--<div class="sex-select">-->
+                    <!--<select class="form-control" formControlName="job">-->
+                      <!--<option value="" selected>请选择工种</option>-->
+                      <!--<option value="工人1">工人1</option>-->
+                      <!--<option value="工人2">工人2</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
                 </div>
                 <div class="col-3">
-                  <div class="sex-select">
-                    <select class="form-control" formControlName="dustAge">
-                      <option value="" selected>请选择工龄</option>
-                      <option value="5">5</option>
-                      <option value="10">10</option>
-                    </select>
+                  <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="请输入工龄" aria-describedby="sizing-addon1"
+                           formControlName="dustAge">
+                    <!--<span class="input-group-addon" id="sizing-addon3"><i class="fa fa-mobile"-->
+                                                                          <!--aria-hidden="true"></i></span>-->
                   </div>
+                  <!--<div class="sex-select">-->
+                    <!--<select class="form-control" formControlName="dustAge">-->
+                      <!--<option value="" selected>请选择工龄</option>-->
+                      <!--<option value="5">5</option>-->
+                      <!--<option value="10">10</option>-->
+                    <!--</select>-->
+                  <!--</div>-->
                 </div>
                 <div class="col-3">
                   <div class="sex-select">
                     <select class="form-control" formControlName="dustProperty">
                       <option value="" selected>请选择粉尘性质</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
+                      <option value="矽肺">矽肺</option>
+                      <option value="煤工尘肺">煤工尘肺</option>
+                      <option value="石墨尘肺">石墨尘肺</option>
+                      <option value="炭黑尘肺">炭黑尘肺</option>
+                      <option value="石棉肺">石棉肺</option>
+                      <option value="滑石尘肺">滑石尘肺</option>
+                      <option value="水泥尘肺">水泥尘肺</option>
+                      <option value="云母尘肺">云母尘肺</option>
+                      <option value="陶工尘肺">陶工尘肺</option>
+                      <option value="铝尘肺">铝尘肺</option>
+                      <option value="电焊工尘肺">电焊工尘肺</option>
+                      <option value="铸工尘肺">铸工尘肺</option>
                     </select>
                   </div>
                 </div>
@@ -95,8 +117,7 @@
                     <select class="form-control" formControlName="complication">
                       <option value="" selected>请选择并发症</option>
                       <option value="无">无</option>
-                      <option value="1">1</option>
-                      <option value="2">2</option>
+                      <option value="有">有</option>
                     </select>
                   </div>
                 </div>
@@ -117,9 +138,9 @@
             </div>
             <div *ngSwitchCase="'secondStep'">
               <div class="row">
-                <label class="col-sm-2 control-label">上传化验单</label>
+                <label class="col-sm-2 control-label">上传临床化验单</label>
                 <div class="col-sm-10">
-                  <file-upload [url]="fileUploadUrl" [name]="'file1'" [fileSizeLimit]="sizeLimit"
+                  <file-upload [url]="fileUploadUrl" [name]="fileName" [fileSizeLimit]="sizeLimit"
                                [disable]="disableUpload"
                                (onFinishUploading)="onFinishUploading($event)"
                                (onUploading)="onFileUploading($event)"></file-upload>
@@ -136,8 +157,11 @@
             </div>
             <div *ngSwitchCase="'thirdStep'">
               <div class="row">
-                <label class="col-sm-2 control-label">上传X光片</label>
-                <div class="col-sm-10">
+                <div class="col-sm-2 control-label">
+                  <p>上传专项检查</p>
+                  <p>x光片及肺功能</p>
+                </div>
+                <div class="col-sm-10 file-upload">
                   <file-upload [url]="fileUploadUrl" [name]="fileName" [fileSizeLimit]="sizeLimit"
                                [disable]="disableUpload"
                                (onFinishUploading)="onFinishUploading($event)"
@@ -149,7 +173,7 @@
                   <button type="button" class="btn btn-primary" (click)="step='secondStep'">上一步</button>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary">提交</button>
+                  <button type="submit" class="btn btn-primary">智慧分析</button>
                 </div>
               </div>
             </div>
