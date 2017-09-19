@@ -9,25 +9,27 @@ import {ResultAnalyzeService} from "./result-analyze.service";
 })
 
 export class ResultAnalyzeComponent implements OnInit{
-  rows = [
-    {
-      "name": "yga",
-      "patientName": "Ethel Price",
-      "pid": "女",
-      "status": "完成",
-      "analysisResult": "13",
-      "reviewResult": "3级",
-      "id":1
-    },
-    {
-      "name": "gtrrer",
-      "patientName": "arwe Price",
-      "pid": "男",
-      "status": "分析中",
-      "analysisResult": "无",
-      "reviewResult": "3级"
-    }
-  ];
+  // rows = [
+  //   {
+  //     "name": "defa",
+  //     "patientName": "孙婷婷",
+  //     "pid": "女",
+  //     "status": "完成",
+  //     "analysisResult": "13",
+  //     "reviewResult": "3级",
+  //     "id":1
+  //   },
+  //   {
+  //     "name": "gtrrer",
+  //     "patientName": "arwe Price",
+  //     "pid": "男",
+  //     "status": "分析中",
+  //     "analysisResult": "无",
+  //     "reviewResult": "3级"
+  //   }
+  // ];
+
+  resultList:any = [];
 
   constructor(private _service:ResultAnalyzeService){}
 
@@ -39,12 +41,13 @@ export class ResultAnalyzeComponent implements OnInit{
     this._service.getCaseHistoryList()
       .then(res=>{
         if(res.aboolean === true){
-          // this.caseHistoryList = res.data
+          console.log("res",res.data);
+          this.resultList = res.data
         }
       })
   }
 
   getRow(row){
-    sessionStorage.setItem("taskId", row.id);
+    sessionStorage.setItem("taskId", row.taskId);
   }
 }

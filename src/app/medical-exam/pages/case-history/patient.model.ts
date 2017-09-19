@@ -2,6 +2,13 @@
  * Created by gaole on 2017/9/14.
  */
 export class PatientInfo{
+  patientHistory: PatientHistory;
+  constructor(
+
+  ){}
+}
+
+export class PatientHistory{
   public id: string;
   public patientName: string;
   public sex: string;
@@ -14,7 +21,4 @@ export class PatientInfo{
   public medicalHistory: string;
   public dustAge: string;
   public dustProperty: string;
-  constructor(
-
-  ){}
 }

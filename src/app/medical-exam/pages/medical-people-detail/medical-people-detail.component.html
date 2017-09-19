@@ -22,8 +22,8 @@
       </div>
       <div class="sick-people-xRay">
        <accordion [closeOthers]="true">
-        <accordion-group #group *ngFor="let e of demoList">
-          <div accordion-heading (click)="openAccordion()">
+        <accordion-group #group *ngFor="let e of demoList; let i=index">
+          <div accordion-heading (click)="openAccordion(i)">
             2017-05-12 - 2017-06-13
             <i class="pull-right float-xs-right glyphicon"
                [ngClass]="{'glyphicon-chevron-down': group?.isOpen, 'glyphicon-chevron-right': !group?.isOpen}"></i>
@@ -39,7 +39,7 @@
                          onselectstart='return false;'
                          onmousedown='return false;'>
 
-                      <div #dcmEle id="dicomImage"
+                      <div  id="{{'dicomImage'+ i }}"
                            style="height: 300px;">
                       </div>
                     </div>

@@ -11,7 +11,7 @@
         <div class="col">
           <div class="x-ray">
             <div id="dicomWrapper2"
-                 class='disable-selection noIbar'
+                 class='disable-selection noIbar cornerstone-enabled-image'
                  unselectable='on'
                  onselectstart='return false;'
                  onmousedown='return false;'>
@@ -27,22 +27,22 @@
         </div>
         <div class="col">
           <div class="basic-info">
-            <h3><span class="name">孙婷婷</span>的诊断书</h3>
+            <h3><span class="name">{{patientMDInfo.patientName}}</span>的诊断书</h3>
             <div class="basic-info-detail">
               <div class="row">
                 <div class="col-3">姓名</div>
-                <div class="col-9">孙婷婷</div>
+                <div class="col-9">{{patientMDInfo.patientName}}</div>
               </div>
-              <div class=row><div class="col-3">性别</div><div class="col-9">女</div> </div>
-              <div class=row><div class="col-3">年龄</div><div class="col-9">48岁</div></div>
+              <div class=row><div class="col-3">性别</div><div class="col-9">{{patientMDInfo.sex}}</div> </div>
+              <div class=row><div class="col-3">年龄</div><div class="col-9">{{patientMDInfo.age}}</div></div>
               <div class=row><div class="col-3">病例号</div><div class="col-9">10092736492</div> </div>
-              <div class=row><div class="col-3">工龄</div><div class="col-9">5年</div> </div>
+              <div class=row><div class="col-3">工龄</div><div class="col-9">{{patientMDInfo.dustAge}}</div> </div>
               <div class=row><div class="col-3">性质</div><div class="col-9">3级</div></div>
               <div class="row">
                 <div class="col-3">扼要病情</div>
                 <div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>
               </div>
-              <div class="row"><div class="col-3">分析建议</div><div class="col-9">三级甲等肺尘病</div></div>
+              <div class="row"><div class="col-3">分析建议</div><div class="col-9">{{patientMDInfo.analysisResult}}</div></div>
             </div>
           </div>
         </div>
@@ -52,14 +52,14 @@
       <div class="container">
         <div class="row">
           <div class="col-2">专家诊断:</div>
-          <div class="col-5" *ngIf="userType == 'tj_expert'">
+          <div class="col-5" *ngIf="userType == 'tj_expert'&&updateBtn==false">
             <select class="form-control" [(ngModel)]="reviewResult">
-              <option value="1">1</option>
-              <option value="2">2</option>
-              <option value="3">3</option>
+              <option *ngFor="let reviewResult of reviewResults" value="{{reviewResult.value}}">{{reviewResult.label}}</option>
             </select>
           </div>
-          <div class="col-5" *ngIf="userType == 'tj_doctor'">一级</div>
+          <div class="col-5" *ngIf="userType == 'tj_expert'&& updateBtn==true">{{reviewResults[reviewResult].label}}</div>
+
+          <div class="col-5" *ngIf="userType == 'tj_doctor'">{{patientMDInfo.reviewResult}}</div>
         </div>
       </div>
     </div>
@@ -67,14 +67,17 @@
       <div class="container">
         <div class="row">
           <div class="col-2">专家建议:</div>
-          <div class="col-10" *ngIf="userType == 'tj_doctor'">多段连</div>
-          <div class="col-10" *ngIf="userType == 'tj_expert'">
+          <div class="col-10" *ngIf="userType == 'tj_doctor'">{{patientMDInfo.reviewComment }}</div>
+          <div class="col-10" *ngIf="userType == 'tj_expert'&&updateBtn==false">
             <textarea name="" id="" cols="110" rows="3" [(ngModel)]="reviewComment"></textarea>
+          </div>
+          <div class="col-10" *ngIf="userType == 'tj_expert'&&updateBtn==true">
+            <span>{{reviewComment}}</span>
           </div>
         </div>
       </div>
     </div>
-    <div class="submitInfo" *ngIf="userType == 'tj_expert'">
+    <div class="submitInfo" *ngIf="userType == 'tj_expert'&&updateBtn==false">
       <a class="btn review-btn" (click)="updateTaskDetail()">提交</a>
     </div>
   </div>

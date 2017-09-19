@@ -17,15 +17,43 @@ declare const cornerstoneTools;
   providers: [CaseHistoryDetailService]
 })
 
-export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
+export class CaseHistoryDetailComponent implements OnInit {
   @ViewChild('dcmEle') dcmEle: ElementRef;
   @ViewChild('fullDcmEle') fullDcmEle: ElementRef;
   imageData: any;
   // patientId: string = '';
   taskId: string = '';
-  patientMDInfo: any;
-  reviewResult: string;
+  patientMDInfo: any = {
+    patientName: "",
+    sex: "",
+    age: "",
+    dustAge: "",
+    analysisResult: "",
+    reviewResult: "",
+    reviewComment: "",
+    filename: "",
+    xrayId: ""
+  };
+  reviewResults = [
+    {
+      value: 0,
+      label: '无尘肺病'
+    },
+    {
+      value: 1,
+      label: '一期尘肺病'
+    },
+    {
+      value: 2,
+      label: '二期尘肺病'
+    },
+    {
+      value: 3,
+      label: '三期期尘肺病'
+    }
+  ];
   reviewComment: string;
+  reviewResult:string;
 
   userType: string;
 
@@ -36,6 +64,7 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
   imageList = [];
 
   currentIndex = 0;
+  updateBtn: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
@@ -74,13 +103,18 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
     // cornerstone.enable(this.dcmEle.nativeElement);
   }
 
-  ngAfterViewInit() {
-    this.initImage();
-  }
+  // ngAfterViewInit() {
+  //   this.initImage();
+  // }
 
-  initImage(){
-    this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
+  initImage(fileName){
+    console.log("fileName",fileName);
+
+    cornerstone.enable(this.dcmEle.nativeElement);
+
+    this.csS.fetchDicomImage(`http://localhost:4000/TM/files/${fileName}`)
       .subscribe(res => {
+        console.log(res);
         this.imageData = res;
         if (this.imageData) {
 
@@ -103,7 +137,7 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
           }
         }
       });
-    cornerstone.enable(this.dcmEle.nativeElement);
+
   }
 
   displayImage(image) {
@@ -112,13 +146,13 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
 
   ngOnInit() {
     this.reviewDetail();
-
   }
 
   reviewDetail() {
     this._service.reviewDetail(this.taskId)
       .then(res => {
         this.patientMDInfo = res.data;
+        this.initImage(this.patientMDInfo.filename);
       })
   }
 
@@ -130,6 +164,9 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
     };
     this._service.updateTaskDetail(updateTaskInfo)
       .then(res => {
+        if (res.aboolean === true) {
+          this.updateBtn = true;
+        }
         // console.log(res);
       })
   }
@@ -138,8 +175,9 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
     this.fullScreenBtn = true;
     setTimeout(() => {
       cornerstone.enable(this.fullDcmEle.nativeElement);
+      // console.log("fileame", this.patientMDInfo.filename);
 
-      this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
+      this.csS.fetchDicomImage(`http://localhost:4000/TM/files/${this.patientMDInfo.filename}`)
         .subscribe(res => {
           this.imageData = res;
           if (this.imageData) {
@@ -192,33 +230,33 @@ export class CaseHistoryDetailComponent implements OnInit,AfterViewInit {
   }
 
   getTransferSyntax() {
-  var value = this.imageData.data.string('x00020010');
-  return value;
-}
+    var value = this.imageData.data.string('x00020010');
+    return value;
+  }
 
   getSopClass() {
-  var value = this.imageData.data.string('x00080016');
-  return value;
-}
+    var value = this.imageData.data.string('x00080016');
+    return value;
+  }
 
   getPixelRepresentation() {
-  var value = this.imageData.data.uint16('x00280103');
-  if(value === undefined) {
-    return;
+    var value = this.imageData.data.uint16('x00280103');
+    if (value === undefined) {
+      return;
+    }
+    return value + (value === 0 ? ' (unsigned)' : ' (signed)');
   }
-  return value + (value === 0 ? ' (unsigned)' : ' (signed)');
-}
 
   getPlanarConfiguration() {
-  var value = this.imageData.data.uint16('x00280006');
-  if(value === undefined) {
-    return;
+    var value = this.imageData.data.uint16('x00280006');
+    if (value === undefined) {
+      return;
+    }
+    return value + (value === 0 ? ' (pixel)' : ' (plane)');
   }
-  return value + (value === 0 ? ' (pixel)' : ' (plane)');
-}
 
   backDetail() {
     this.fullScreenBtn = false;
-    this.initImage();
+    // this.initImage();
   }
 }

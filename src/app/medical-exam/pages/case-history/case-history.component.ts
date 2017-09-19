@@ -32,11 +32,12 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   job: AbstractControl;
   complication: AbstractControl;
   jobHistory: AbstractControl;
-  medicalHistory: AbstractControl;
+  // medicalHistory: AbstractControl;
   dustAge: AbstractControl;
   dustProperty: AbstractControl;
 
   caseHistoryInfo: any = {};
+  fileInfo: any = {};
 
   private disableUpload: boolean = false;
   private fileName: string = 'file';
@@ -59,6 +60,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.bsConfig = Object.assign({}, {locale: this.locale}, {containerClass: this.colorTheme});
 
+    console.log("patinetID",this.patientId);
     if (this.patientId) {
       this.getPatientInfo();
     } else {
@@ -66,7 +68,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     }
   }
 
-  ngAfterViewInit() {
+  validatePID(){
     Observable.fromEvent(this.el.nativeElement, 'keyup')
       .map((e: any) => e.target.value)
       .filter((text: any) => text.length > 15)
@@ -86,19 +88,22 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       })
   }
 
+  ngAfterViewInit() {
+  }
+
   updateForm() {
     this.caseHistoryForm = this.fb.group({
-      "patientName": [this.patientInfo.patientName, Validators.compose([])],
-      "sex": [this.patientInfo.sex, Validators.compose([])],
-      "age": [this.patientInfo.age, Validators.compose([])],
-      "pid": [this.patientInfo.pid, Validators.compose([])],
-      "tel": [this.patientInfo.tel, Validators.compose([])],
-      "job": [this.patientInfo.job, Validators.compose([])],
-      "complication": [this.patientInfo.complication, Validators.compose([])],
-      "jobHistory": [this.patientInfo.jobHistory, Validators.compose([])],
-      "medicalHistories": [this.patientInfo.medicalHistory, Validators.compose([])],
-      "dustAge": [this.patientInfo.dustAge, Validators.compose([])],
-      "dustProperty": [this.patientInfo.dustProperty, Validators.compose([])],
+      "patientName": [this.patientInfo.patientHistory.patientName, Validators.compose([])],
+      "sex": [this.patientInfo.patientHistory.sex, Validators.compose([])],
+      "age": [this.patientInfo.patientHistory.age, Validators.compose([])],
+      "pid": [this.patientInfo.patientHistory.pid, Validators.compose([])],
+      "tel": [this.patientInfo.patientHistory.tel, Validators.compose([])],
+      "job": [this.patientInfo.patientHistory.job, Validators.compose([])],
+      "complication": [this.patientInfo.patientHistory.complication, Validators.compose([])],
+      "jobHistory": [this.patientInfo.patientHistory.jobHistory, Validators.compose([])],
+      // "medicalHistories": [this.patientInfo.medicalHistory, Validators.compose([])],
+      "dustAge": [this.patientInfo.patientHistory.dustAge, Validators.compose([])],
+      "dustProperty": [this.patientInfo.patientHistory.dustProperty, Validators.compose([])],
     });
   }
 
@@ -112,7 +117,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       "job": ['', Validators.compose([])],
       "complication": ['', Validators.compose([])],
       "jobHistory": ['', Validators.compose([])],
-      "medicalHistory": ['', Validators.compose([])],
+      // "medicalHistory": ['', Validators.compose([])],
       "dustAge": ['', Validators.compose([])],
       "dustProperty": ['', Validators.compose([])],
     });
@@ -125,15 +130,17 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     this.job = this.caseHistoryForm.controls['job'];
     this.complication = this.caseHistoryForm.controls['complication'];
     this.jobHistory = this.caseHistoryForm.controls['jobHistory'];
-    this.medicalHistory = this.caseHistoryForm.controls['medicalHistory'];
+    // this.medicalHistory = this.caseHistoryForm.controls['medicalHistory'];
     this.dustAge = this.caseHistoryForm.controls['dustAge'];
     this.dustProperty = this.caseHistoryForm.controls['dustProperty'];
   }
 
   onSubmit(event: any) {
+    console.log("patientId", this.patientId);
     if (!this.patientId) {
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories:this.medicalHistoryList});
+      this.caseHistoryInfo = {patientHistory: this.caseHistoryInfo, file: this.fileInfo.file,medicalHistories:this.medicalHistoryList};
       this._service.newCaseHistory(this.caseHistoryInfo)
         .then(res => {
           if (res.aboolean === true) {
@@ -141,7 +148,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
           }
         });
     } else {
-      let updateInfo = {patientHistoryId: this.patientInfo.id, xRayId: this.caseHistoryInfo.file};
+      let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, xRayId: this.caseHistoryInfo.file};
       this._service.updateCaseHistory(updateInfo)
         .then(res => {
           if (res.aboolean) {
@@ -160,7 +167,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onFinishUploading(replyObj: any) {
-    this.caseHistoryInfo[replyObj.property] = replyObj.rsp.data;
+    this.fileInfo[replyObj.property] = replyObj.rsp.data;
     this.disableUpload = false;
   }
 

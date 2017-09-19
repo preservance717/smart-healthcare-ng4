@@ -1,6 +1,7 @@
 import {Component, OnInit, ElementRef, ViewChild, Renderer2} from "@angular/core";
 import {GlobalState} from "../../../global.state";
 import {DashboardService} from "./dashboard.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'dashboard',
@@ -152,7 +153,7 @@ export class DashboardComponent implements OnInit {
   viewBtn: boolean = false;
   caseHistoryList: any = [];
 
-  constructor(private GlobalState: GlobalState, private _service:DashboardService,private renderer:Renderer2) {
+  constructor( private _service:DashboardService,private renderer:Renderer2,private router:Router) {
   }
 
   ngOnInit() {
@@ -182,4 +183,9 @@ export class DashboardComponent implements OnInit {
     sessionStorage.setItem("patientId", row.id);
   }
 
+  toggleNewCaseHistory(){
+    if(!this.viewBtn){
+      this.router.navigate(["/medical-exam/pages/ch"]);
+    }
+  }
 }

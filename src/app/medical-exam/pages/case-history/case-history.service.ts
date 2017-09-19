@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
 
 @Injectable()
 export class CaseHistoryService {
-  newCaseHistoryUrl: string = '/newPatient';
+  newCaseHistoryUrl: string = '/newPatientAndXTask';
   updateCaseHistoryUrl: string = '/newXTask';
   findOnePatientUrl: string = '/selectOnePatient';
   pidValidateUrl: string = '/checkPid';
