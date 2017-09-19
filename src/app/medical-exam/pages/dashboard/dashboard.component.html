@@ -9,7 +9,7 @@
           </div>
         </div>
         <div class="actual-content-core">
-          <div class="new-case-history" (click)="toggleNewCaseHistory()">
+          <div class="new-case-history" routerLink="../ch" (click)="toggleNewCaseHistory()">
             <div class="new-case-con">
               <div style="margin-bottom: 20px">
                 <img src="../../../assets/img/app/dashboard/new-case-history.jpg" alt="">
@@ -90,7 +90,7 @@
               </ngx-datatable-column>
               <ngx-datatable-column [width]="170">
                 <ng-template let-row="row" ngx-datatable-cell-template >
-                  <a class="btn review-btn" routerLink="../mpd"><i class="fa fa-eye" aria-hidden="true"></i> 查看</a>
+                  <a class="btn review-btn" routerLink="../mpd" (click)="getPatientId(row)"><i class="fa fa-eye" aria-hidden="true"></i> 查看</a>
                   <a class="btn modify-btn" routerLink="../ch" (click)="getPatientId(row)">
                     <i class="fa fa-pencil" aria-hidden="true"></i> 修改</a>
                 </ng-template>
