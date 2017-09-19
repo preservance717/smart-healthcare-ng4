@@ -7,21 +7,22 @@ declare const cornerstone;
   styleUrls: ['medical-people-detail.component.scss']
 })
 export class MedicalPeopleDetailComponent implements OnInit {
-  @ViewChild('dcmEle') dcmEle: ElementRef;
-
   imageData: any;
   imageList = [];
 
   demoList = [1,2];
+  dcmElement:any;
 
-  constructor(public csS: CornerstoneService) { }
+  constructor(public csS: CornerstoneService,public elementRef:ElementRef) { }
 
   ngOnInit() {
   }
 
-  openAccordion(){
+  openAccordion(i){
+    this.dcmElement = this.elementRef.nativeElement.querySelector("#dicomImage"+i);
+
     setTimeout(() => {
-      cornerstone.enable(this.dcmEle.nativeElement);
+      cornerstone.enable(this.dcmElement);
 
       this.csS.fetchDicomImage(`http://localhost:4000/assets/dicom/im1.dcm`)
         .subscribe(res => {
@@ -34,11 +35,9 @@ export class MedicalPeopleDetailComponent implements OnInit {
           }
         });
     }, 0);
-    console.log("open accordin");
   }
 
   displayImage(image) {
-    console.log("oninit",this.dcmEle);
-    cornerstone.displayImage(this.dcmEle.nativeElement, image);
+    cornerstone.displayImage(this.dcmElement, image);
   }
 }
