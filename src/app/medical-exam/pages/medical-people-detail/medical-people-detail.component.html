@@ -26,9 +26,9 @@
           </div>
         </div>
       </div>
-      <div class="sick-people-xRay">
+      <div class="sick-people-xRay" *ngIf="patientInfo">
         <accordion [closeOthers]="true">
-          <accordion-group #group *ngFor="let e of demoList; let i=index">
+          <accordion-group #group *ngFor="let e of patientInfo.xrayTaskDTOList; let i=index">
             <div accordion-heading (click)="openAccordion(i)">
               2017-05-12 - 2017-06-13
               <i class="pull-right float-xs-right glyphicon"
@@ -75,13 +75,9 @@
                           <div class="col-9">{{patientInfo.patientHistory.dustAge}}</div>
                         </div>
                         <div class="row margin-row">
-                          <div class="col-3">性质</div>
+                          <div class="col-3">粉尘性质</div>
                           <div class="col-9">{{patientInfo.patientHistory.dustProperty}}</div>
                         </div>
-                        <!--<div class=""row margin-row"">-->
-                          <!--<div class="col-3">扼要病情</div>-->
-                          <!--<div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>-->
-                        <!--</div>-->
                         <div class="row margin-row">
                           <div class="col-3">分析建议</div>
                           <div class="col-9">三级甲等肺尘病</div>

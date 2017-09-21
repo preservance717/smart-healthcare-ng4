@@ -11,7 +11,7 @@ defineLocale('zh-cn', zhCn);
 })
 export class MedicalHistoryComponent implements OnInit,OnChanges {
   // @Output() medicalHistoryChange = new EventEmitter();
-  @Input('medicalHistory') medicalHistory: any[];
+  @Input('medicalHistory') medicalHistory: any[] = [];
   @Output() medicalHistoryChange = new EventEmitter();
 
   medicalHistoryList: any = [];
@@ -25,7 +25,9 @@ export class MedicalHistoryComponent implements OnInit,OnChanges {
 
   ngOnInit() {
     // this.bsConfig = Object.assign({},{containerClass: this.colorTheme},{locale:'zh-cn'});
-    this.medicalHistoryList = this.medicalHistory;
+    if(this.medicalHistory){
+      this.medicalHistoryList = this.medicalHistory;
+    }
   }
 
   ngOnChanges(){

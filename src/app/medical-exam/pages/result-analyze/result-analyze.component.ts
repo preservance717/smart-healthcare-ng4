@@ -24,7 +24,7 @@ export class ResultAnalyzeComponent implements OnInit{
         if(res.aboolean === true){
           this.resultList = res.data;
           this.resultList = this.resultList.map(result=>{
-            result.reviewResult = pneumoconiosisOptions[result.reviewResult].label;
+            result.reviewResult = result.reviewResult? pneumoconiosisOptions[result.reviewResult].label:result.reviewResult;
             return result;
           })
         }

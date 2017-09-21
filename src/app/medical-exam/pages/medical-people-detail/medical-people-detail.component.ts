@@ -12,7 +12,6 @@ export class MedicalPeopleDetailComponent implements OnInit {
   imageData: any;
   imageList = [];
 
-  demoList = [1,2];
   dcmElement:any;
 
   patientInfo:any;
@@ -33,11 +32,10 @@ export class MedicalPeopleDetailComponent implements OnInit {
 
   openAccordion(i){
     this.dcmElement = this.elementRef.nativeElement.querySelector("#dicomImage"+i);
-
     setTimeout(() => {
       cornerstone.enable(this.dcmElement);
 
-      this.csS.fetchDicomImage(`/TM/files/${this.patientInfo.file}`)
+      this.csS.fetchDicomImage(`/TM/files/${this.patientInfo.xrayTaskDTOList[i].fileName}`)
         .subscribe(res => {
           this.imageData = res;
           if (this.imageData) {

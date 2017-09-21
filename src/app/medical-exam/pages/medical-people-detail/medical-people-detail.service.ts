@@ -5,7 +5,7 @@ import {GlobalState} from "../../../global.state";
 
 @Injectable()
 export class MedicalPeopleDetailService {
-  patientDetailUrl: string = '/selectOnePatient';
+  patientDetailUrl: string = '/selectPatientAndXTask';
 
   constructor(private http: Http, private GlobalState: GlobalState) {
     this.patientDetailUrl = this.GlobalState.MEBaseUrl + this.patientDetailUrl;

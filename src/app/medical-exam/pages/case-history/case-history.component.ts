@@ -138,6 +138,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     if (!this.patientId) {
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories:this.medicalHistoryList});
+      this.medicalHistoryList = this.medicalHistoryList || [];
       this.caseHistoryInfo = {patientHistory: this.caseHistoryInfo, file: this.fileInfo.file,medicalHistories:this.medicalHistoryList};
       this._service.newCaseHistory(this.caseHistoryInfo)
         .then(res => {
