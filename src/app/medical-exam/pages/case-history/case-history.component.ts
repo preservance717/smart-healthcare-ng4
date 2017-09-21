@@ -147,7 +147,8 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
           }
         });
     } else {
-      let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, xRayId: this.caseHistoryInfo.file};
+      let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, fileId: this.fileInfo.file};
+      console.log("updateInfo", updateInfo);
       this._service.updateCaseHistory(updateInfo)
         .then(res => {
           if (res.aboolean) {

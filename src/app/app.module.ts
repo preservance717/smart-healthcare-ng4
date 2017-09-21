@@ -16,6 +16,10 @@ const appRoutes: Routes = [
         path: 'medical-exam',
         loadChildren: "app/medical-exam/medical-exam.module#MedicalExamModule"
       },
+      {
+        path: 'mz-platform',
+        loadChildren: "app/mz-platform/mz-platform.module#MZPlatformExamModule"
+      },
 
       {path: '', redirectTo: 'medical-exam', pathMatch: 'full'}
       ]

@@ -38,9 +38,10 @@
               <div class=row><div class="col-3">病例号</div><div class="col-9">10092736492</div> </div>
               <div class=row><div class="col-3">工龄</div><div class="col-9">{{patientMDInfo.dustAge}}</div> </div>
               <div class=row><div class="col-3">粉尘性质</div><div class="col-9">{{patientMDInfo.dustProperty}}</div></div>
-              <div class="row">
+              <div class="row" *ngIf="patientMDInfo">
                 <div class="col-3">病史</div>
-                <div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>
+                <div class="col-9" *ngFor="let medicalHistory of patientMDInfo.medicalHistories">
+                  {{medicalHistory.description}}&nbsp;&nbsp;&nbsp;{{medicalHistory.startTime}}-{{medicalHistory.endTime}}</div>
               </div>
               <div class="row"><div class="col-3">分析建议</div><div class="col-9">{{patientMDInfo.analysisResult}}</div></div>
             </div>
