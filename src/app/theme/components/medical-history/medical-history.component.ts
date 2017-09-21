@@ -1,4 +1,4 @@
-import {Component, OnInit, EventEmitter, Output, Input} from '@angular/core';
+import {Component, OnInit, EventEmitter, Output, Input, OnChanges} from '@angular/core';
 import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import { defineLocale } from 'ngx-bootstrap/bs-moment';
 import { zhCn } from 'ngx-bootstrap/locale';
@@ -9,7 +9,7 @@ defineLocale('zh-cn', zhCn);
   templateUrl: './medical-history.component.html',
   styleUrls: ['medical-history.component.scss']
 })
-export class MedicalHistoryComponent implements OnInit {
+export class MedicalHistoryComponent implements OnInit,OnChanges {
   // @Output() medicalHistoryChange = new EventEmitter();
   @Input('medicalHistory') medicalHistory: any[];
   @Output() medicalHistoryChange = new EventEmitter();
@@ -25,8 +25,13 @@ export class MedicalHistoryComponent implements OnInit {
 
   ngOnInit() {
     // this.bsConfig = Object.assign({},{containerClass: this.colorTheme},{locale:'zh-cn'});
+    this.medicalHistoryList = this.medicalHistory;
   }
 
+  ngOnChanges(){
+    console.log("this.medicalHistoryList on changes",this.medicalHistory);
+
+  }
 
   addMedicalHistory() {
     this.medicalHistoryList.push({
@@ -36,7 +41,6 @@ export class MedicalHistoryComponent implements OnInit {
     });
     this.medicalHistoryDesc = '';
     this.medicalHistoryChange.emit(this.medicalHistoryList);
-    console.log(this.medicalHistoryList);
   }
 
   updateDateRange(event) {

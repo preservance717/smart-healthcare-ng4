@@ -42,7 +42,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   private disableUpload: boolean = false;
   private fileName: string = 'file';
   private sizeLimit = 2097152000;
-  fileUploadUrl: string = 'http://localhost:4000/TM/uploadFile';
+  fileUploadUrl: string = '/TM/uploadFile';
 
   patientId: string = '';
   patientInfo: PatientInfo;
@@ -60,7 +60,6 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   ngOnInit() {
     this.bsConfig = Object.assign({}, {locale: this.locale}, {containerClass: this.colorTheme});
 
-    console.log("patinetID",this.patientId);
     if (this.patientId) {
       this.getPatientInfo();
     } else {
@@ -95,7 +94,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     this.caseHistoryForm = this.fb.group({
       "patientName": [this.patientInfo.patientHistory.patientName, Validators.compose([])],
       "sex": [this.patientInfo.patientHistory.sex, Validators.compose([])],
-      "age": [this.patientInfo.patientHistory.age, Validators.compose([])],
+      // "age": [this.patientInfo.patientHistory.age, Validators.compose([])],
       "pid": [this.patientInfo.patientHistory.pid, Validators.compose([])],
       "tel": [this.patientInfo.patientHistory.tel, Validators.compose([])],
       "job": [this.patientInfo.patientHistory.job, Validators.compose([])],
@@ -136,7 +135,6 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onSubmit(event: any) {
-    console.log("patientId", this.patientId);
     if (!this.patientId) {
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories:this.medicalHistoryList});
@@ -158,10 +156,6 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     }
   }
 
-  valueChange(value) {
-    // console.log("value", value, typeof value);
-  }
-
   onFileUploading() {
     this.disableUpload = true;
   }
@@ -176,6 +170,10 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       this._service.getPatientInfo(this.patientId)
         .then(res => {
           this.patientInfo = res.data;
+          console.log("res.data.medicalHistories",res.data.medicalHistories);
+          this.medicalHistoryList = res.data.medicalHistories;
+          this.medicalHistoryList = this.medicalHistoryList.concat();
+          // console.log("this.medicalHistoryList",this.medicalHistoryList);
           this.updateForm();
         })
     }
