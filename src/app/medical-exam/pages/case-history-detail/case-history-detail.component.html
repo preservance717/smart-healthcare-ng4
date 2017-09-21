@@ -57,7 +57,7 @@
               <option *ngFor="let reviewResult of reviewResults" value="{{reviewResult.value}}">{{reviewResult.label}}</option>
             </select>
           </div>
-          <div class="col-5" *ngIf="userType == 'tj_expert'&& updateBtn==true">{{reviewResults[reviewResult].label}}</div>
+          <div class="col-5" *ngIf="userType == 'tj_expert'&& updateBtn==true">{{expertResult}}</div>
 
           <div class="col-5" *ngIf="userType == 'tj_doctor'">{{patientMDInfo.reviewResult}}</div>
         </div>

@@ -6,6 +6,7 @@ import {CornerstoneService} from "../../../theme/services/cornerstone.service";
 import {CaseHistoryDetailService} from "./case-history-detail.service";
 import {GlobalState} from "../../../global.state";
 import * as $ from "jquery";
+import {pneumoconiosisOptions} from "./pneumoconiosisOptions";
 
 declare const cornerstone;
 declare const cornerstoneTools;
@@ -34,26 +35,10 @@ export class CaseHistoryDetailComponent implements OnInit {
     filename: "",
     xrayId: ""
   };
-  reviewResults = [
-    {
-      value: 0,
-      label: '无尘肺病'
-    },
-    {
-      value: 1,
-      label: '一期尘肺病'
-    },
-    {
-      value: 2,
-      label: '二期尘肺病'
-    },
-    {
-      value: 3,
-      label: '三期期尘肺病'
-    }
-  ];
+  reviewResults = pneumoconiosisOptions;
   reviewComment: string;
   reviewResult: string;
+  expertResult:string;
 
   userType: string;
 
@@ -152,6 +137,11 @@ export class CaseHistoryDetailComponent implements OnInit {
       .then(res => {
         this.patientMDInfo = res.data;
         this.initImage(this.patientMDInfo.filename);
+        if(this.patientMDInfo.reviewResult){
+          this.updateBtn = true;
+          this.reviewComment = this.patientMDInfo.reviewComment;
+          this.expertResult =  this.reviewResults[this.patientMDInfo.reviewResult].label;
+        }
       })
   }
 
@@ -165,6 +155,7 @@ export class CaseHistoryDetailComponent implements OnInit {
       .then(res => {
         if (res.aboolean === true) {
           this.updateBtn = true;
+          this.expertResult = this.reviewResults[this.reviewResult].label
         }
         // console.log(res);
       })
