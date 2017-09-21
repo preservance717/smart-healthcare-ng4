@@ -1,0 +1,46 @@
+<div class="auth-main">
+
+  <div id="content">
+    <div class="login-background">
+      <img src="assets/img/app/login&register/background.png" width="100%" height="100%"/>
+    </div>
+
+    <div class="platform-desc">
+      <h1>智能辅助诊断平台</h1>
+      <p class="sm">健康管理更简单尘肺病智能体检平台破除尘肺病治疗难题</p>
+      <p>您健康的保障</p>
+    </div>
+
+    <div id="LoginPart">
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+
+        <div class="user-type">
+          <nav>
+            <li [ngClass]="{'expert-selected':showExpertBtn}" (click)="showExpert()">专家</li>
+            <li class="doctor" [ngClass]="{'doctor-selected':showDoctorBtn}" (click)="showDoctor()">医生</li>
+          </nav>
+        </div>
+        <div class="input-content">
+          <div class="input-group" id="username">
+            <span class="input-addon" id="basic-addon1"><i class="fa fa-user fa-x" aria-hidden="true"></i></span>
+            <input type="text" class="sh-form-control" placeholder="请输入您的账号" aria-describedby="basic-addon1"
+                   [formControl]="name">
+          </div>
+          <div class="input-group" id="password">
+            <span class="input-addon" id="basic-addon2"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+            <input type="password" class="sh-form-control" placeholder="请输入您的密码" aria-describedby="basic-addon2"
+                   [formControl]="password">
+          </div>
+        </div>
+        <div class="handle">
+          <button [disabled]="!form.valid" type="submit" id="login">登录</button>
+        </div>
+
+      </form>
+
+    </div>
+
+  </div>
+
+</div>
