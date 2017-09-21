@@ -53,7 +53,7 @@ export class CaseHistoryDetailComponent implements OnInit {
     }
   ];
   reviewComment: string;
-  reviewResult:string;
+  reviewResult: string;
 
   userType: string;
 
@@ -68,7 +68,8 @@ export class CaseHistoryDetailComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-    cornerstone.resize(this.dcmEle.nativeElement, true);
+
+    // cornerstone.resize(this.dcmEle.nativeElement, true);
   }
 
   @HostListener('mousewheel', ['$event'])
@@ -107,9 +108,7 @@ export class CaseHistoryDetailComponent implements OnInit {
   //   this.initImage();
   // }
 
-  initImage(fileName){
-    console.log("fileName",fileName);
-
+  initImage(fileName) {
     cornerstone.enable(this.dcmEle.nativeElement);
 
     this.csS.fetchDicomImage(`http://localhost:4000/TM/files/${fileName}`)
@@ -257,6 +256,8 @@ export class CaseHistoryDetailComponent implements OnInit {
 
   backDetail() {
     this.fullScreenBtn = false;
-    // this.initImage();
+    setTimeout(() => {
+      this.initImage(this.patientMDInfo.filename);
+    }, 0);
   }
 }
