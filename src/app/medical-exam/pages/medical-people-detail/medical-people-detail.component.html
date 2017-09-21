@@ -13,7 +13,7 @@
             <div class="col">姓名：{{patientInfo.patientHistory.patientName}}</div>
             <div class="col">性别：{{patientInfo.patientHistory.sex}}</div>
             <div class="col">工龄：{{patientInfo.patientHistory.dustAge}}</div>
-            <div class="col">性质：3级</div>
+            <div class="col">粉尘性质：{{patientInfo.patientHistory.dustProperty}}</div>
           </div>
           <div class="row ch-row">
             <div class="col-2">扼要病情:</div>
@@ -58,35 +58,31 @@
                     <div class="basic-info">
                       <h3><span class="name">{{patientInfo.patientHistory.patientName}}</span>的诊断书</h3>
                       <div class="basic-info-detail">
-                        <div class="row">
+                        <div class="row margin-row">
                           <div class="col-3">姓名</div>
                           <div class="col-9">{{patientInfo.patientHistory.patientName}}</div>
                         </div>
-                        <div class=row>
+                        <div class="row margin-row">
                           <div class="col-3">性别</div>
                           <div class="col-9">{{patientInfo.patientHistory.sex}}</div>
                         </div>
-                        <div class=row>
-                          <div class="col-3">年龄</div>
-                          <div class="col-9">48岁</div>
+                        <div class="row margin-row">
+                          <div class="col-3">出生日期</div>
+                          <div class="col-9">{{patientInfo.patientHistory.birthday}}</div>
                         </div>
-                        <div class=row>
-                          <div class="col-3">病例号</div>
-                          <div class="col-9">10092736492</div>
-                        </div>
-                        <div class=row>
+                        <div class="row margin-row">
                           <div class="col-3">工龄</div>
                           <div class="col-9">{{patientInfo.patientHistory.dustAge}}</div>
                         </div>
-                        <div class=row>
+                        <div class="row margin-row">
                           <div class="col-3">性质</div>
                           <div class="col-9">{{patientInfo.patientHistory.dustProperty}}</div>
                         </div>
-                        <div class="row">
-                          <div class="col-3">扼要病情</div>
-                          <div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>
-                        </div>
-                        <div class="row">
+                        <!--<div class=""row margin-row"">-->
+                          <!--<div class="col-3">扼要病情</div>-->
+                          <!--<div class="col-9">患者孙婷婷，48岁，由于长时间接触大量粉尘，导致肺部粉尘量过高，于2019-07-06在我院就医</div>-->
+                        <!--</div>-->
+                        <div class="row margin-row">
                           <div class="col-3">分析建议</div>
                           <div class="col-9">三级甲等肺尘病</div>
                         </div>
