@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,17 @@ import {Component, OnInit} from '@angular/core';
 })
 export class AppComponent implements OnInit{
   title = 'app';
+  url: string;
+
+  constructor(private router:Router){
+    this.url = window.location.href;
+  }
   ngOnInit(){
-    console.log("href", window.location.href);
+    let path = this.url.split("?")[1];
+    if(path == "platform=tj"){
+      this.router.navigate(['/medical-exam']);
+    }else if(path == "platform=mz"){
+      this.router.navigate(['/mz-platform']);
+    }
   }
 }
