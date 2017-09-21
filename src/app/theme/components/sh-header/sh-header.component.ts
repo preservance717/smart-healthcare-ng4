@@ -32,4 +32,8 @@ export class ShHeaderComponent implements OnInit {
     this.router.navigate(["/medical-exam/pages/ch"]);
     return false;
   }
+  logout(){
+    this.router.navigate(["/medical-exam/login"]);
+    return false;
+  }
 }
