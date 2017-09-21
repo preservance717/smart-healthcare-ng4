@@ -37,7 +37,7 @@ export class MedicalPeopleDetailComponent implements OnInit {
     setTimeout(() => {
       cornerstone.enable(this.dcmElement);
 
-      this.csS.fetchDicomImage(`http://localhost:4000/TM/files/${this.patientInfo.file}`)
+      this.csS.fetchDicomImage(`/TM/files/${this.patientInfo.file}`)
         .subscribe(res => {
           this.imageData = res;
           if (this.imageData) {

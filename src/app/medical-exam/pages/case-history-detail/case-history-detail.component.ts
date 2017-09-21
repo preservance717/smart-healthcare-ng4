@@ -96,7 +96,7 @@ export class CaseHistoryDetailComponent implements OnInit {
   initImage(fileName) {
     cornerstone.enable(this.dcmEle.nativeElement);
 
-    this.csS.fetchDicomImage(`http://localhost:4000/TM/files/${fileName}`)
+    this.csS.fetchDicomImage(`/TM/files/${fileName}`)
       .subscribe(res => {
         console.log(res);
         this.imageData = res;
@@ -167,7 +167,7 @@ export class CaseHistoryDetailComponent implements OnInit {
       cornerstone.enable(this.fullDcmEle.nativeElement);
       // console.log("fileame", this.patientMDInfo.filename);
 
-      this.csS.fetchDicomImage(`http://localhost:4000/TM/files/${this.patientMDInfo.filename}`)
+      this.csS.fetchDicomImage(`/TM/files/${this.patientMDInfo.filename}`)
         .subscribe(res => {
           this.imageData = res;
           if (this.imageData) {

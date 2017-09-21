@@ -110,7 +110,7 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   top: 7px;
   left: 3px;
-  background: url(../../../assets/img/app/login&register/user-Blur.png) no-repeat;
+  //background: url(assets/img/app/login&register/user-Blur.png) no-repeat;
 }
 
 .pw-Img {
@@ -119,7 +119,7 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   top: 6px;
   left: 3px;
-  background: url(../../../assets/img/app/login&register/pw-Blur.png) no-repeat;
+  //background: url(assets/img/app/login&register/pw-Blur.png) no-repeat;
 }
 
 ::-webkit-input-placeholder {
@@ -181,11 +181,11 @@ input:focus, textarea:focus, select:focus {
 }
 
 #usInput:focus ~ .us-Img {
-  background: url(../../../assets/img/app/login&register/user-Focus.png) no-repeat;
+  //background: url(assets/img/app/login&register/user-Focus.png) no-repeat;
 }
 
 #pwInput:focus ~ .pw-Img {
-  background: url(../../../assets/img/app/login&register/pw-Focus.png) no-repeat;
+  //background: url(assets/img/app/login&register/pw-Focus.png) no-repeat;
 }
 
 .user-type {

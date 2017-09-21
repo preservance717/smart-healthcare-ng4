@@ -12,19 +12,19 @@ export class FileUploadComponent implements OnInit {
   @Input() url: string;
   @Input() name: string;
   @Input() type: string = '';
-  @Input() fileDisplay:boolean;
+  @Input() fileDisplay: boolean;
 
   @Output() onUploading = new EventEmitter<boolean>();
   @Output() onFinishUploading = new EventEmitter<any>();
 
   private zone: NgZone;
-  private uploading: boolean = false;
-  private progress: number = 0;
+  uploading: boolean = false;
+  progress: number = 0;
   private response: any = {};
-  private originalName: string = '';
+  originalName: string = '';
 
   private reply: ReplyObject = new ReplyObject();
-  private options: Object;
+  options: Object;
 
   constructor() {
   }

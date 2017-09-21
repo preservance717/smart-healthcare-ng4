@@ -28,6 +28,7 @@ export class ShHeaderComponent implements OnInit {
   }
 
   toggleCH(){
+    sessionStorage.removeItem("patientId");
     this.router.navigate(["/medical-exam/pages/ch"]);
     return false;
   }
