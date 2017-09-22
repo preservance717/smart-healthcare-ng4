@@ -8,14 +8,14 @@ export const pneumoconiosisOptions = [
   },
   {
     value: 1,
-    label: '一期尘肺病'
+    label: '尘肺一期'
   },
   {
     value: 2,
-    label: '二期尘肺病'
+    label: '尘肺二期'
   },
   {
     value: 3,
-    label: '三期期尘肺病'
+    label: '尘肺三期'
   }
 ];
