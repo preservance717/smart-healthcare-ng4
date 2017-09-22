@@ -42,7 +42,7 @@ export class CaseHistoryDetailComponent implements OnInit {
 
   userType: string;
 
-  fullScreenBtn: boolean = false;
+fullScreenBtn: boolean = false;
 
   // element: any;
 
@@ -62,6 +62,7 @@ export class CaseHistoryDetailComponent implements OnInit {
     event.preventDefault();
 
     const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
+    console.log("event",event);
 
     if (delta > 0) {
       this.currentIndex++;

@@ -15,10 +15,10 @@ export class CornerstoneService {
 
 
     cornerstoneWADOImageLoader.webWorkerManager.initialize({
-      webWorkerPath : '/assets/cornerstone/webworkers/cornerstoneWADOImageLoaderWebWorker.js',
+      webWorkerPath : 'assets/cornerstone/cornerstoneWADOImageLoaderWebWorker.js',
       taskConfiguration: {
         'decodeTask' : {
-          codecsPath: '/assets/cornerstone/codecs/cornerstoneWADOImageLoaderCodecs.js'
+          codecsPath: 'cornerstoneWADOImageLoaderCodecs.js'
         }
       }
     });
