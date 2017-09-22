@@ -184,8 +184,10 @@ export class DashboardComponent implements OnInit {
   }
 
   toggleNewCaseHistory(){
-    if(!this.viewBtn){
+    if(this.viewBtn === false){
       this.router.navigate(["/medical-exam/pages/ch"]);
+    }else {
+      this.router.navigate(["/medical-exam/pages/db"]);
     }
   }
 }
