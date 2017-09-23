@@ -51,6 +51,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
 
   medicalHistoryList: any;
   pidValidate: boolean = false;
+  fileUploadValidate: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder, private _service: CaseHistoryService) {
     this.patientId = sessionStorage.getItem("patientId") || '';
@@ -67,7 +68,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     }
   }
 
-  validatePID(){
+  validatePID() {
     Observable.fromEvent(this.el.nativeElement, 'keyup')
       .map((e: any) => e.target.value)
       .filter((text: any) => text.length > 15)
@@ -75,9 +76,9 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       .map((query: string) => this._service.validatePID(query))
       .switch()
       .subscribe((res) => {
-        if(res.aboolean==true){
+        if (res.aboolean == true) {
           this.pidValidate = false;
-        }else {
+        } else {
           this.pidValidate = true;
         }
       }, (err: any) => {
@@ -137,9 +138,13 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   onSubmit(event: any) {
     if (!this.patientId) {
       this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
-      this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories:this.medicalHistoryList});
+      this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories: this.medicalHistoryList});
       this.medicalHistoryList = this.medicalHistoryList || [];
-      this.caseHistoryInfo = {patientHistory: this.caseHistoryInfo, file: this.fileInfo.file,medicalHistories:this.medicalHistoryList};
+      this.caseHistoryInfo = {
+        patientHistory: this.caseHistoryInfo,
+        file: this.fileInfo.file,
+        medicalHistories: this.medicalHistoryList
+      };
       this._service.newCaseHistory(this.caseHistoryInfo)
         .then(res => {
           if (res.aboolean === true) {
@@ -148,7 +153,6 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
         });
     } else {
       let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, fileId: this.fileInfo.file};
-      console.log("updateInfo", updateInfo);
       this._service.updateCaseHistory(updateInfo)
         .then(res => {
           if (res.aboolean) {
@@ -163,8 +167,12 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onFinishUploading(replyObj: any) {
+    let name = replyObj.originName.split(".")[1];
     this.fileInfo[replyObj.property] = replyObj.rsp.data;
     this.disableUpload = false;
+    if (name == 'dcm') {
+      this.fileUploadValidate = true;
+    }
   }
 
   getPatientInfo() {
@@ -172,7 +180,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       this._service.getPatientInfo(this.patientId)
         .then(res => {
           this.patientInfo = res.data;
-          console.log("res.data.medicalHistories",res.data.medicalHistories);
+          console.log("res.data.medicalHistories", res.data.medicalHistories);
           this.medicalHistoryList = res.data.medicalHistories;
           this.medicalHistoryList = this.medicalHistoryList.concat();
           // console.log("this.medicalHistoryList",this.medicalHistoryList);
@@ -186,7 +194,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   private date2String(date: any): string {
-    if (Object.keys(date).length === 0 || date === null || date === undefined || (date.year == 0&&date.month==0&&date.day==0)) {
+    if (Object.keys(date).length === 0 || date === null || date === undefined || (date.year == 0 && date.month == 0 && date.day == 0)) {
       return null;
     }
 

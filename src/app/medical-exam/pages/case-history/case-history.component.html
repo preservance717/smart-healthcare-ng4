@@ -162,7 +162,7 @@
                   <button type="button" class="btn btn-primary" (click)="step='secondStep'">上一步</button>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary">智慧分析</button>
+                  <a type="submit" class="btn btn-primary analyze" [ngClass]="{'disabled': !fileUploadValidate}">智慧分析</a>
                 </div>
               </div>
             </div>

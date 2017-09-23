@@ -4,7 +4,7 @@
 export const pneumoconiosisOptions = [
   {
     value: 0,
-    label: '无尘肺病'
+    label: '无尘肺'
   },
   {
     value: 1,

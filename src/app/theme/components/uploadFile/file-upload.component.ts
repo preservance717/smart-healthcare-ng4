@@ -54,6 +54,7 @@ export class FileUploadComponent implements OnInit {
     if (rsp) {
       rsp = JSON.parse(rsp);
       this.reply.rsp = rsp;
+      this.reply.originName = this.originalName;
       this.onFinishUploading.emit(this.reply);
     }
   }
@@ -73,4 +74,5 @@ export class FileUploadComponent implements OnInit {
 export class ReplyObject {
   property: string;
   rsp: any;
+  originName:string;
 }
