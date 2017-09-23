@@ -8,6 +8,7 @@ import {Injectable} from "@angular/core";
 export class GlobalState{
   MEBaseUrl = "/TM/TJ";
   user_type: string = '';
+  expertStatus: string = "";
 
   private _data = new Subject<Object>();
   private _dataStream$ = this._data.asObservable();

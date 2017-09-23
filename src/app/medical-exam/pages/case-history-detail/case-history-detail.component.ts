@@ -62,7 +62,6 @@ fullScreenBtn: boolean = false;
     event.preventDefault();
 
     const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
-    console.log("event",event);
 
     if (delta > 0) {
       this.currentIndex++;
@@ -138,10 +137,15 @@ fullScreenBtn: boolean = false;
       .then(res => {
         this.patientMDInfo = res.data;
         this.initImage(this.patientMDInfo.filename);
-        if(this.patientMDInfo.reviewResult){
-          this.updateBtn = true;
+        if(this._state.expertStatus == "update"){
+          this.reviewResult = this.patientMDInfo.reviewResult;
           this.reviewComment = this.patientMDInfo.reviewComment;
-          this.expertResult =  this.reviewResults[this.patientMDInfo.reviewResult].label;
+        }else if(this._state.expertStatus == "review"){
+          if(this.patientMDInfo.reviewResult){
+            this.updateBtn = true;
+            this.reviewComment = this.patientMDInfo.reviewComment;
+            this.expertResult =  this.reviewResults[this.patientMDInfo.reviewResult].label;
+          }
         }
       })
   }

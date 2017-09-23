@@ -1,6 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ResultAnalyzeService} from "./result-analyze.service";
 import {pneumoconiosisOptions} from "../case-history-detail/pneumoconiosisOptions";
+import {GlobalState} from "../../../global.state";
 
 @Component({
   selector:'result-analyze',
@@ -12,7 +13,7 @@ import {pneumoconiosisOptions} from "../case-history-detail/pneumoconiosisOption
 export class ResultAnalyzeComponent implements OnInit{
   resultList:any = [];
 
-  constructor(private _service:ResultAnalyzeService){}
+  constructor(private _service:ResultAnalyzeService,private state:GlobalState){}
 
   ngOnInit(){
     this.getCaseHistoryList();
@@ -24,7 +25,7 @@ export class ResultAnalyzeComponent implements OnInit{
         if(res.aboolean === true){
           this.resultList = res.data;
           this.resultList = this.resultList.map(result=>{
-            result.reviewResult = result.reviewResult? pneumoconiosisOptions[result.reviewResult].label:result.reviewResult;
+            result.reviewResult = result.reviewResult != null? pneumoconiosisOptions[result.reviewResult].label:result.reviewResult;
             return result;
           })
         }
@@ -33,5 +34,10 @@ export class ResultAnalyzeComponent implements OnInit{
 
   getRow(row){
     sessionStorage.setItem("taskId", row.taskId);
+    this.state.expertStatus = "review";
+  }
+  updateRow(row){
+    sessionStorage.setItem("taskId", row.taskId);
+    this.state.expertStatus = "update";
   }
 }
