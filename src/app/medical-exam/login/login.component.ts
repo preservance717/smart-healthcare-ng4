@@ -42,6 +42,7 @@ export class Login {
             this.router.navigate(['/medical-exam/pages']);
             sessionStorage.setItem("user_type", res.data);
           } else {
+            alert(res.msg);
           }
         }).catch(error => console.log(error))
     }
