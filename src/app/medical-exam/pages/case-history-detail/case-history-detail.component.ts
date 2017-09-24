@@ -59,7 +59,7 @@ fullScreenBtn: boolean = false;
 
   @HostListener('mousewheel', ['$event'])
   onMouseWheel(event) {
-    event.preventDefault();
+    // event.preventDefault();
 
     const delta = Math.max(-1, Math.min(1, (event.wheelDelta || -event.detail)));
 
