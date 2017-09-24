@@ -129,7 +129,7 @@
               <div class="row">
                 <label class="col-sm-2 control-label">上传临床化验单</label>
                 <div class="col-sm-10">
-                  <file-upload [url]="fileUploadUrl" [name]="fileName" [fileSizeLimit]="sizeLimit"
+                  <file-upload [url]="fileUploadUrl" [name]="'huayan'" [fileSizeLimit]="sizeLimit"
                                [disable]="disableUpload"
                                (onFinishUploading)="onFinishUploading($event)"
                                (onUploading)="onFileUploading($event)"></file-upload>
@@ -162,7 +162,7 @@
                   <button type="button" class="btn btn-primary" (click)="step='secondStep'">上一步</button>
                 </div>
                 <div class="col">
-                  <a type="submit" class="btn btn-primary analyze" [ngClass]="{'disabled': !fileUploadValidate}">智慧分析</a>
+                  <button type="submit" class="btn btn-primary analyze">智慧分析</button>
                 </div>
               </div>
             </div>

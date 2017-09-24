@@ -51,7 +51,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
 
   medicalHistoryList: any;
   pidValidate: boolean = false;
-  fileUploadValidate: boolean = false;
+  // fileUploadValidate: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder, private _service: CaseHistoryService) {
     this.patientId = sessionStorage.getItem("patientId") || '';
@@ -136,29 +136,33 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onSubmit(event: any) {
-    if (!this.patientId) {
-      this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
-      this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories: this.medicalHistoryList});
-      this.medicalHistoryList = this.medicalHistoryList || [];
-      this.caseHistoryInfo = {
-        patientHistory: this.caseHistoryInfo,
-        file: this.fileInfo.file,
-        medicalHistories: this.medicalHistoryList
-      };
-      this._service.newCaseHistory(this.caseHistoryInfo)
-        .then(res => {
-          if (res.aboolean === true) {
-            this.router.navigate(["/medical-exam/pages/ra"]);
-          }
-        });
-    } else {
-      let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, fileId: this.fileInfo.file};
-      this._service.updateCaseHistory(updateInfo)
-        .then(res => {
-          if (res.aboolean) {
-            this.router.navigate(["/medical-exam/pages/ra"]);
-          }
-        })
+    if(this.fileInfo.file){
+      if (!this.patientId) {
+        this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
+        this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories: this.medicalHistoryList});
+        this.medicalHistoryList = this.medicalHistoryList || [];
+        this.caseHistoryInfo = {
+          patientHistory: this.caseHistoryInfo,
+          file: this.fileInfo.file,
+          medicalHistories: this.medicalHistoryList
+        };
+        this._service.newCaseHistory(this.caseHistoryInfo)
+          .then(res => {
+            if (res.aboolean === true) {
+              this.router.navigate(["/medical-exam/pages/ra"]);
+            }
+          });
+      } else {
+        let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, fileId: this.fileInfo.file};
+        this._service.updateCaseHistory(updateInfo)
+          .then(res => {
+            if (res.aboolean) {
+              this.router.navigate(["/medical-exam/pages/ra"]);
+            }
+          })
+      }
+    }else {
+      alert("请上传胸片");
     }
   }
 
@@ -167,12 +171,12 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onFinishUploading(replyObj: any) {
-    let name = replyObj.originName.split(".")[1];
+    // let name = replyObj.originName.split(".")[1];
     this.fileInfo[replyObj.property] = replyObj.rsp.data;
     this.disableUpload = false;
-    if (name == 'dcm') {
-      this.fileUploadValidate = true;
-    }
+    // if (name == 'dcm') {
+    //   this.fileUploadValidate = true;
+    // }
   }
 
   getPatientInfo() {
