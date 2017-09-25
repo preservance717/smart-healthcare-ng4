@@ -12,8 +12,11 @@ import {GlobalState} from "../../../global.state";
 
 export class ResultAnalyzeComponent implements OnInit{
   resultList:any = [];
+  userType: string = '';
 
-  constructor(private _service:ResultAnalyzeService,private state:GlobalState){}
+  constructor(private _service:ResultAnalyzeService,private state:GlobalState){
+    this.userType = sessionStorage.getItem("user_type")
+  }
 
   ngOnInit(){
     this.getCaseHistoryList();
