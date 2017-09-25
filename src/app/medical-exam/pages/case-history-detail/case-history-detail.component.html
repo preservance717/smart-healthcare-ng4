@@ -53,13 +53,14 @@
       <div class="container">
         <div class="row">
           <div class="col-2">专家诊断:</div>
-          <div class="col-5" *ngIf="userType == 'tj_expert'&&updateBtn==false">
-            <select class="form-control" [(ngModel)]="reviewResult">
-              <option *ngFor="let reviewResult of reviewResults" value="{{reviewResult.value}}">{{reviewResult.label}}</option>
-            </select>
+          <div class="col-5" *ngIf="userType == 'tj_expert'">
+            <div  *ngIf="updateBtn==false">
+              <select class="form-control" [(ngModel)]="reviewResult">
+                <option *ngFor="let reviewResult of reviewResults" value="{{reviewResult.value}}">{{reviewResult.label}}</option>
+              </select>
+            </div>
+            <div *ngIf="updateBtn==true">{{expertResult}}</div>
           </div>
-          <div class="col-5" *ngIf="userType == 'tj_expert'&& updateBtn==true">{{expertResult}}</div>
-
           <div class="col-5" *ngIf="userType == 'tj_doctor'">{{patientMDInfo.reviewResult}}</div>
         </div>
       </div>
@@ -68,12 +69,14 @@
       <div class="container">
         <div class="row">
           <div class="col-2">专家建议:</div>
-          <div class="col-10" *ngIf="userType == 'tj_doctor'">{{patientMDInfo.reviewComment }}</div>
-          <div class="col-10" *ngIf="userType == 'tj_expert'&&updateBtn==false">
-            <textarea name="" id="" cols="110" rows="3" [(ngModel)]="reviewComment"></textarea>
-          </div>
-          <div class="col-10" *ngIf="userType == 'tj_expert'&&updateBtn==true">
-            <span>{{reviewComment}}</span>
+          <div  *ngIf="userType == 'tj_doctor'">{{patientMDInfo.reviewComment }}</div>
+          <div class="col-10"  *ngIf="userType == 'tj_expert'">
+            <div *ngIf="updateBtn==false">
+              <textarea name="" id="" cols="110" rows="3" [(ngModel)]="reviewComment"></textarea>
+            </div>
+            <div *ngIf="updateBtn==true">
+              <span>{{reviewComment}}</span>
+            </div>
           </div>
         </div>
       </div>

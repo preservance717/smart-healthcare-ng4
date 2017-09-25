@@ -1,7 +1,7 @@
 /**
  * Created by gaole on 2017/9/8.
  */
-import {Component, OnInit, HostListener, Input, ElementRef, Directive, ViewChild, AfterViewInit} from "@angular/core";
+import {Component, OnInit, HostListener, ElementRef, ViewChild} from "@angular/core";
 import {CornerstoneService} from "../../../theme/services/cornerstone.service";
 import {CaseHistoryDetailService} from "./case-history-detail.service";
 import {GlobalState} from "../../../global.state";
@@ -22,7 +22,6 @@ export class CaseHistoryDetailComponent implements OnInit {
   @ViewChild('dcmEle') dcmEle: ElementRef;
   @ViewChild('fullDcmEle') fullDcmEle: ElementRef;
   imageData: any;
-  // patientId: string = '';
   taskId: string = '';
   patientMDInfo: any = {
     patientName: "",
@@ -38,13 +37,11 @@ export class CaseHistoryDetailComponent implements OnInit {
   reviewResults = pneumoconiosisOptions;
   reviewComment: string;
   reviewResult: string;
-  expertResult:string;
+  expertResult: string;
 
   userType: string;
 
-fullScreenBtn: boolean = false;
-
-  // element: any;
+  fullScreenBtn: boolean = false;
 
   imageList = [];
 
@@ -53,8 +50,11 @@ fullScreenBtn: boolean = false;
 
   @HostListener('window:resize', ['$event'])
   onResize(event) {
-
-    // cornerstone.resize(this.dcmEle.nativeElement, true);
+    if(this.dcmEle){
+      cornerstone.resize(this.dcmEle.nativeElement, true);
+    }else if(this.fullDcmEle){
+      cornerstone.resize(this.fullDcmEle.nativeElement, true);
+    }
   }
 
   @HostListener('mousewheel', ['$event'])
@@ -79,26 +79,16 @@ fullScreenBtn: boolean = false;
 
   constructor(public csS: CornerstoneService,
               private _service: CaseHistoryDetailService,
-              private _state: GlobalState,
-              public elementRef: ElementRef) {
-    // this.patientId = sessionStorage.getItem("patientId");
+              private _state: GlobalState) {
     this.taskId = sessionStorage.getItem("taskId");
     this.userType = sessionStorage.getItem("user_type");
-
-    // this.element = this.element.nativeElement;
-    // cornerstone.enable(this.dcmEle.nativeElement);
   }
-
-  // ngAfterViewInit() {
-  //   this.initImage();
-  // }
 
   initImage(fileName) {
     cornerstone.enable(this.dcmEle.nativeElement);
 
     this.csS.fetchDicomImage(`/TM/files/${fileName}`)
       .subscribe(res => {
-        console.log(res);
         this.imageData = res;
         if (this.imageData) {
 
@@ -107,25 +97,11 @@ fullScreenBtn: boolean = false;
           }
 
           if (this.imageData.imageId) {
-            this.displayImage(this.imageData);
-            // console.log("oninit",this.dcmEle);
-            cornerstone.displayImage(this.dcmEle.nativeElement, this.imageData);
-            cornerstoneTools.mouseInput.enable(this.dcmEle.nativeElement);
-            cornerstoneTools.mouseWheelInput.enable(this.dcmEle.nativeElement);
-
-            // Enable all tools we want to use with this this.dcmEle.nativeElement
-            cornerstoneTools.wwwc.activate(this.dcmEle.nativeElement, 1); // ww/wc is the default tool for left mouse button
-            cornerstoneTools.pan.activate(this.dcmEle.nativeElement, 2); // pan is the default tool for middle mouse button
-            cornerstoneTools.zoom.activate(this.dcmEle.nativeElement, 4); // zoom is the default tool for right mouse button
-            cornerstoneTools.zoomWheel.activate(this.dcmEle.nativeElement); // zoom is the default tool for middle mouse wheel
+            this.activeDcm(this.dcmEle.nativeElement, this.imageData);
           }
         }
       });
 
-  }
-
-  displayImage(image) {
-    cornerstone.displayImage(this.dcmEle.nativeElement, image);
   }
 
   ngOnInit() {
@@ -137,14 +113,14 @@ fullScreenBtn: boolean = false;
       .then(res => {
         this.patientMDInfo = res.data;
         this.initImage(this.patientMDInfo.filename);
-        if(this._state.expertStatus == "update"){
+        if (this._state.expertStatus == "update") {
           this.reviewResult = this.patientMDInfo.reviewResult;
           this.reviewComment = this.patientMDInfo.reviewComment;
-        }else if(this._state.expertStatus == "review"){
-          if(this.patientMDInfo.reviewResult){
+        } else if (this._state.expertStatus == "review") {
+          if (this.patientMDInfo.reviewResult) {
             this.updateBtn = true;
             this.reviewComment = this.patientMDInfo.reviewComment;
-            this.expertResult =  this.reviewResults[this.patientMDInfo.reviewResult].label;
+            this.expertResult = this.reviewResults[this.patientMDInfo.reviewResult].label;
           }
         }
       })
@@ -162,7 +138,6 @@ fullScreenBtn: boolean = false;
           this.updateBtn = true;
           this.expertResult = this.reviewResults[this.reviewResult].label
         }
-        // console.log(res);
       })
   }
 
@@ -170,7 +145,6 @@ fullScreenBtn: boolean = false;
     this.fullScreenBtn = true;
     setTimeout(() => {
       cornerstone.enable(this.fullDcmEle.nativeElement);
-      // console.log("fileame", this.patientMDInfo.filename);
 
       this.csS.fetchDicomImage(`/TM/files/${this.patientMDInfo.filename}`)
         .subscribe(res => {
@@ -182,46 +156,50 @@ fullScreenBtn: boolean = false;
             }
 
             if (this.imageData.imageId) {
-              // this.displayImage(this.imageData);
-              cornerstone.displayImage(this.fullDcmEle.nativeElement, this.imageData);
-              cornerstoneTools.mouseInput.enable(this.fullDcmEle.nativeElement);
-              cornerstoneTools.mouseWheelInput.enable(this.fullDcmEle.nativeElement);
-
-              // Enable all tools we want to use with this this.fullDcmEle.nativeElement
-              cornerstoneTools.wwwc.activate(this.fullDcmEle.nativeElement, 1); // ww/wc is the default tool for left mouse button
-              cornerstoneTools.pan.activate(this.fullDcmEle.nativeElement, 2); // pan is the default tool for middle mouse button
-              cornerstoneTools.zoom.activate(this.fullDcmEle.nativeElement, 4); // zoom is the default tool for right mouse button
-              cornerstoneTools.zoomWheel.activate(this.fullDcmEle.nativeElement); // zoom is the default tool for middle mouse wheel
-              $('#transferSyntax').text(this.getTransferSyntax());
-              $('#sopClass').text(this.getSopClass());
-              $('#samplesPerPixel').text(this.imageData.data.uint16('x00280002'));
-              $('#columns').text(this.imageData.data.uint16('x00280011'));
-              $('#photometricInterpretation').text(this.imageData.data.string('x00280004'));
-              $('#numberOfFrames').text(this.imageData.data.string('x00280008'));
-              $('#rows').text(this.imageData.data.uint16('x00280010'));
-              $('#pixelSpacing').text(this.imageData.data.string('x00280030'));
-              $('#planarConfiguration').text(this.getPlanarConfiguration());
-              $('#bitsAllocated').text(this.imageData.data.uint16('x00280100'));
-              $('#bitsStored').text(this.imageData.data.uint16('x00280101'));
-              $('#highBit').text(this.imageData.data.uint16('x00280102'));
-              $('#pixelRepresentation').text(this.getPixelRepresentation());
-              $('#windowCenter').text(this.imageData.data.string('x00281050'));
-              $('#windowWidth').text(this.imageData.data.string('x00281051'));
-              $('#rescaleIntercept').text(this.imageData.data.string('x00281052'));
-              $('#rescaleSlope').text(this.imageData.data.string('x00281053'));
-              $('#basicOffsetTable').text(this.imageData.data.elements.x7fe00010.basicOffsetTable ? this.imageData.data.elements.x7fe00010.basicOffsetTable.length : '');
-              $('#fragments').text(this.imageData.data.elements.x7fe00010.fragments ? this.imageData.data.elements.x7fe00010.fragments.length : '');
-              $('#minStoredPixelValue').text(this.imageData.minPixelValue);
-              $('#maxStoredPixelValue').text(this.imageData.maxPixelValue);
-              // var end = new Date().getTime();
-              // var time = end - start;
-              // $('#totalTime').text(time + "ms");
-              $('#loadTime').text(this.imageData.loadTimeInMS + "ms");
-              $('#decodeTime').text(this.imageData.decodeTimeInMS + "ms");
+              this.activeDcm(this.fullDcmEle.nativeElement, this.imageData);
+              this.dcmDescripe();
             }
           }
         });
     }, 0)
+  }
+
+  dcmDescripe(){
+    $('#transferSyntax').text(this.getTransferSyntax());
+    $('#sopClass').text(this.getSopClass());
+    $('#samplesPerPixel').text(this.imageData.data.uint16('x00280002'));
+    $('#columns').text(this.imageData.data.uint16('x00280011'));
+    $('#photometricInterpretation').text(this.imageData.data.string('x00280004'));
+    $('#numberOfFrames').text(this.imageData.data.string('x00280008'));
+    $('#rows').text(this.imageData.data.uint16('x00280010'));
+    $('#pixelSpacing').text(this.imageData.data.string('x00280030'));
+    $('#planarConfiguration').text(this.getPlanarConfiguration());
+    $('#bitsAllocated').text(this.imageData.data.uint16('x00280100'));
+    $('#bitsStored').text(this.imageData.data.uint16('x00280101'));
+    $('#highBit').text(this.imageData.data.uint16('x00280102'));
+    $('#pixelRepresentation').text(this.getPixelRepresentation());
+    $('#windowCenter').text(this.imageData.data.string('x00281050'));
+    $('#windowWidth').text(this.imageData.data.string('x00281051'));
+    $('#rescaleIntercept').text(this.imageData.data.string('x00281052'));
+    $('#rescaleSlope').text(this.imageData.data.string('x00281053'));
+    $('#basicOffsetTable').text(this.imageData.data.elements.x7fe00010.basicOffsetTable ? this.imageData.data.elements.x7fe00010.basicOffsetTable.length : '');
+    $('#fragments').text(this.imageData.data.elements.x7fe00010.fragments ? this.imageData.data.elements.x7fe00010.fragments.length : '');
+    $('#minStoredPixelValue').text(this.imageData.minPixelValue);
+    $('#maxStoredPixelValue').text(this.imageData.maxPixelValue);
+    $('#loadTime').text(this.imageData.loadTimeInMS + "ms");
+    $('#decodeTime').text(this.imageData.decodeTimeInMS + "ms");
+  }
+
+  activeDcm(ele, imageData){
+    cornerstone.displayImage(ele, imageData);
+    cornerstoneTools.mouseInput.enable(ele);
+    cornerstoneTools.mouseWheelInput.enable(ele);
+
+    // Enable all tools we want to use with this ele
+    cornerstoneTools.wwwc.activate(ele, 1); // ww/wc is the default tool for left mouse button
+    cornerstoneTools.pan.activate(ele, 2); // pan is the default tool for middle mouse button
+    cornerstoneTools.zoom.activate(ele, 4); // zoom is the default tool for right mouse button
+    cornerstoneTools.zoomWheel.activate(ele); // zoom is the default tool for middle mouse wheel
   }
 
   getTransferSyntax() {
