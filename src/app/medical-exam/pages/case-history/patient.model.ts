@@ -2,7 +2,7 @@
  * Created by gaole on 2017/9/14.
  */
 export class PatientInfo{
-  patientHistory: PatientHistory;
+  patientHistory: PatientHistory = new PatientHistory;
   constructor(
 
   ){}

@@ -3,7 +3,7 @@ import {BsDatepickerConfig} from "ngx-bootstrap/datepicker";
 import {Router} from "@angular/router";
 import {FormGroup, FormBuilder, Validators, AbstractControl} from "@angular/forms";
 import {CaseHistoryService} from "./case-history.service";
-import {PatientInfo} from "./patient.model";
+import {PatientInfo, PatientHistory} from "./patient.model";
 import {Observable} from "rxjs";
 
 @Component({
@@ -15,10 +15,6 @@ import {Observable} from "rxjs";
 
 export class CaseHistoryComponent implements OnInit,AfterViewInit {
   @ViewChild('personId') el: ElementRef;
-
-  locale = "en";
-  bsConfig: Partial<BsDatepickerConfig>;
-  colorTheme = 'theme-default';
 
   step: string = '';
 
@@ -32,7 +28,6 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   job: AbstractControl;
   complication: AbstractControl;
   jobHistory: AbstractControl;
-  // medicalHistory: AbstractControl;
   dustAge: AbstractControl;
   dustProperty: AbstractControl;
 
@@ -51,7 +46,7 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
 
   medicalHistoryList: any;
   pidValidate: boolean = false;
-  // fileUploadValidate: boolean = false;
+  fileUploadVlaidate: boolean = false;
 
   constructor(private router: Router, private fb: FormBuilder, private _service: CaseHistoryService) {
     this.patientId = sessionStorage.getItem("patientId") || '';
@@ -59,8 +54,6 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   ngOnInit() {
-    this.bsConfig = Object.assign({}, {locale: this.locale}, {containerClass: this.colorTheme});
-
     if (this.patientId) {
       this.getPatientInfo();
     } else {
@@ -91,79 +84,65 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   ngAfterViewInit() {
   }
 
-  updateForm() {
+  initForm() {
+    if (!this.patientId) {
+      this.patientInfo = new PatientInfo();
+    }
     this.caseHistoryForm = this.fb.group({
       "patientName": [this.patientInfo.patientHistory.patientName, Validators.compose([])],
       "sex": [this.patientInfo.patientHistory.sex, Validators.compose([])],
-      // "age": [this.patientInfo.patientHistory.age, Validators.compose([])],
       "pid": [this.patientInfo.patientHistory.pid, Validators.compose([])],
       "tel": [this.patientInfo.patientHistory.tel, Validators.compose([])],
       "job": [this.patientInfo.patientHistory.job, Validators.compose([])],
       "complication": [this.patientInfo.patientHistory.complication, Validators.compose([])],
       "jobHistory": [this.patientInfo.patientHistory.jobHistory, Validators.compose([])],
-      // "medicalHistories": [this.patientInfo.medicalHistory, Validators.compose([])],
       "dustAge": [this.patientInfo.patientHistory.dustAge, Validators.compose([])],
       "dustProperty": [this.patientInfo.patientHistory.dustProperty, Validators.compose([])],
-    });
-  }
-
-  initForm() {
-    this.caseHistoryForm = this.fb.group({
-      "patientName": ['', Validators.compose([])],
-      "sex": ['', Validators.compose([])],
-      "age": ['', Validators.compose([])],
-      "pid": ['', Validators.compose([])],
-      "tel": ['', Validators.compose([])],
-      "job": ['', Validators.compose([])],
-      "complication": ['', Validators.compose([])],
-      "jobHistory": ['', Validators.compose([])],
-      // "medicalHistory": ['', Validators.compose([])],
-      "dustAge": ['', Validators.compose([])],
-      "dustProperty": ['', Validators.compose([])],
     });
 
     this.patientName = this.caseHistoryForm.controls['patientName'];
     this.sex = this.caseHistoryForm.controls['sex'];
-    // this.age = this.caseHistoryForm.controls['age'];
     this.pid = this.caseHistoryForm.controls['pid'];
     this.tel = this.caseHistoryForm.controls['tel'];
     this.job = this.caseHistoryForm.controls['job'];
     this.complication = this.caseHistoryForm.controls['complication'];
     this.jobHistory = this.caseHistoryForm.controls['jobHistory'];
-    // this.medicalHistory = this.caseHistoryForm.controls['medicalHistory'];
     this.dustAge = this.caseHistoryForm.controls['dustAge'];
     this.dustProperty = this.caseHistoryForm.controls['dustProperty'];
   }
 
   onSubmit(event: any) {
-    if(this.fileInfo.file){
-      if (!this.patientId) {
-        this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
-        this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories: this.medicalHistoryList});
-        this.medicalHistoryList = this.medicalHistoryList || [];
-        this.caseHistoryInfo = {
-          patientHistory: this.caseHistoryInfo,
-          file: this.fileInfo.file,
-          medicalHistories: this.medicalHistoryList
-        };
-        this._service.newCaseHistory(this.caseHistoryInfo)
-          .then(res => {
-            if (res.aboolean === true) {
-              this.router.navigate(["/medical-exam/pages/ra"]);
-            }
-          });
-      } else {
-        let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, fileId: this.fileInfo.file};
-        this._service.updateCaseHistory(updateInfo)
-          .then(res => {
-            if (res.aboolean) {
-              this.router.navigate(["/medical-exam/pages/ra"]);
-            }
-          })
-      }
-    }else {
-      alert("请上传胸片");
+    if (!this.patientId) {
+      this.newCaseHistory();
+    } else {
+      this.updateCaseHistory();
     }
+  }
+
+  newCaseHistory() {
+    this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, this.caseHistoryForm.value);
+    this.caseHistoryInfo = Object.assign(this.caseHistoryInfo, {medicalHistories: this.medicalHistoryList});
+    this.caseHistoryInfo = {
+      patientHistory: this.caseHistoryInfo,
+      file: this.fileInfo.file,
+      medicalHistories: this.medicalHistoryList || []
+    };
+    this._service.newCaseHistory(this.caseHistoryInfo)
+      .then(res => {
+        if (res.aboolean === true) {
+          this.router.navigate(["/medical-exam/pages/ra"]);
+        }
+      });
+  }
+
+  updateCaseHistory() {
+    let updateInfo = {patientHistoryId: this.patientInfo.patientHistory.id, fileId: this.fileInfo.file};
+    this._service.updateCaseHistory(updateInfo)
+      .then(res => {
+        if (res.aboolean) {
+          this.router.navigate(["/medical-exam/pages/ra"]);
+        }
+      })
   }
 
   onFileUploading() {
@@ -171,12 +150,11 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   }
 
   onFinishUploading(replyObj: any) {
-    // let name = replyObj.originName.split(".")[1];
     this.fileInfo[replyObj.property] = replyObj.rsp.data;
     this.disableUpload = false;
-    // if (name == 'dcm') {
-    //   this.fileUploadValidate = true;
-    // }
+    if (this.fileInfo.file) {
+      this.fileUploadVlaidate = true;
+    }
   }
 
   getPatientInfo() {
@@ -184,11 +162,9 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       this._service.getPatientInfo(this.patientId)
         .then(res => {
           this.patientInfo = res.data;
-          console.log("res.data.medicalHistories", res.data.medicalHistories);
           this.medicalHistoryList = res.data.medicalHistories;
           this.medicalHistoryList = this.medicalHistoryList.concat();
-          // console.log("this.medicalHistoryList",this.medicalHistoryList);
-          this.updateForm();
+          this.initForm();
         })
     }
   }

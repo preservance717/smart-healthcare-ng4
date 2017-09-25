@@ -45,10 +45,6 @@
                 <div class="col">
                   <div class="input-group input-group-lg">
                     <datepicker (onSelected)="updateDateRange($event)"></datepicker>
-                    <!--<input placeholder="请选择出生日期" type="text" class="form-control" bsDatepicker #dp="bsDatepicker"-->
-                           <!--[bsConfig]="bsConfig" formControlName="age" (bsValueChange)="valueChange($event)">-->
-                    <!--<span class="input-group-addon" id="sizing-addon5" (click)="dp.show()"><i class="fa fa-calendar"-->
-                                                                                              <!--aria-hidden="true"></i></span>-->
                   </div>
                 </div>
                 <div class="col">
@@ -118,7 +114,6 @@
                 <textarea type="text" placeholder="    请输入您的职业史" formControlName="jobHistory" ></textarea>
               </div>
               <div class="medicine-history">
-                <!--<textarea type="text" placeholder="    请输入您的既往病史" formControlName="medicalHistory"></textarea>-->
                 <medical-history [(medicalHistory)]="medicalHistoryList"></medical-history>
               </div>
               <div class="next-step">
@@ -162,7 +157,7 @@
                   <button type="button" class="btn btn-primary" (click)="step='secondStep'">上一步</button>
                 </div>
                 <div class="col">
-                  <button type="submit" class="btn btn-primary analyze">智慧分析</button>
+                  <button type="submit" class="btn btn-primary analyze" [disabled]="!fileUploadVlaidate">智慧分析</button>
                 </div>
               </div>
             </div>
