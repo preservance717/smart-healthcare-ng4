@@ -92,7 +92,7 @@
                 <ng-template let-row="row" ngx-datatable-cell-template >
                   <a class="btn review-btn" routerLink="../mpd" (click)="getPatientId(row)"><i class="fa fa-eye" aria-hidden="true"></i> 查看</a>
                   <a class="btn modify-btn" routerLink="../ch" (click)="getPatientId(row)" *ngIf="viewBtn == false">
-                    <i class="fa fa-pencil" aria-hidden="true"></i> 修改</a>
+                    <i class="fa fa-pencil" aria-hidden="true"></i> 随诊</a>
                 </ng-template>
               </ngx-datatable-column>
             </ngx-datatable>
