@@ -1,47 +1,49 @@
 <div>
   <div class="sh-content">
-    <div class="case-history-operation">
-      <div class="actual-content">
-        <div class="actual-content-title">
-          <div class="actual-title-con">
-            <h2>病情建立及分析</h2>
-            <img src="assets/img/app/underline.png" alt="">
-          </div>
-        </div>
-        <div class="actual-content-core">
-          <div class="new-case-history" routerLink="../ch" (click)="toggleNewCaseHistory()">
-            <div class="new-case-con">
-              <div style="margin-bottom: 20px">
-                <img src="assets/img/app/dashboard/new-case-history.jpg" alt="">
-              </div>
-              <a class="btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">新建病例</a>
-            </div>
-          </div>
-          <div class="result-analyze" routerLink="../ra">
-            <div class="new-case-con">
-              <div style="margin-bottom: 10px">
-                <img src="assets/img/app/dashboard/result-analyze.jpg" alt="">
-              </div>
-              <a class="">分析结果</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--<div class="case-history-operation">-->
+      <!--<div class="actual-content">-->
+        <!--<div class="actual-content-title">-->
+          <!--<div class="actual-title-con">-->
+            <!--<h2>病情建立及分析</h2>-->
+            <!--<img src="assets/img/app/underline.png" alt="">-->
+          <!--</div>-->
+        <!--</div>-->
+        <!--<div class="actual-content-core">-->
+          <!--<div class="new-case-history" routerLink="../ch" (click)="toggleNewCaseHistory()">-->
+            <!--<div class="new-case-con">-->
+              <!--<div style="margin-bottom: 20px">-->
+                <!--<img src="assets/img/app/dashboard/new-case-history.jpg" alt="">-->
+              <!--</div>-->
+              <!--<a class="btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">新建病例</a>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="result-analyze" routerLink="../ra">-->
+            <!--<div class="new-case-con">-->
+              <!--<div style="margin-bottom: 10px">-->
+                <!--<img src="assets/img/app/dashboard/result-analyze.jpg" alt="">-->
+              <!--</div>-->
+              <!--<a class="">智能分析结果</a>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
     <div class="case-history-list">
       <div class="actual-content">
-        <div class="actual-content-title">
-          <div class="actual-title-con">
-            <h2>病例列表</h2>
-            <img src="assets/img/app/underline.png" alt="">
-          </div>
-        </div>
+        <!--<div class="actual-content-title">-->
+          <!--<div class="actual-title-con">-->
+            <!--<h2>病例列表</h2>-->
+            <!--<img src="assets/img/app/underline.png" alt="">-->
+          <!--</div>-->
+        <!--</div>-->
         <div class="actual-content-core">
           <div class="row">
             <div class="col"><h3>病例列表</h3></div>
             <div class="col" style="text-align: right">
               <a routerLink="../ch" class="btn new-case-btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">
-                <i class="fa fa-plus" aria-hidden="true"></i> 添加新病例</a>
+                <i class="fa fa-plus" aria-hidden="true"></i> 新建病例</a>
+              <a routerLink="../ra" class="btn new-case-btn" [ngClass]="{'disabled': viewBtn}" (click)="newCaseHistory()">
+                <i class="fa fa-eye" aria-hidden="true"></i> 智能分析结果</a>
             </div>
           </div>
           <div class="actual-content-con">

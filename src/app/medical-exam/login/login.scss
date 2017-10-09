@@ -11,11 +11,6 @@
     margin-top: 30px;
   }
 }
-.input-group {
-  padding-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  margin-bottom: 20px;
-}
 
 .input-addon {
   padding: 0.5rem 0.75rem;
@@ -75,6 +70,11 @@ input:focus, textarea:focus, select:focus {
   position: absolute;
   top: 255px;
   right: 218px;
+  .input-group {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+  }
 }
 
 .auth-main {
