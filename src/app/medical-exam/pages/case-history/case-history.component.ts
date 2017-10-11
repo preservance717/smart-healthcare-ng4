@@ -26,6 +26,10 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
   pid: AbstractControl;
   tel: AbstractControl;
   job: AbstractControl;
+  weight:AbstractControl;
+  stature:AbstractControl;
+  age:AbstractControl;
+  smoke:AbstractControl;
   complication: AbstractControl;
   jobHistory: AbstractControl;
   dustAge: AbstractControl;
@@ -91,6 +95,10 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     this.caseHistoryForm = this.fb.group({
       "patientName": [this.patientInfo.patientHistory.patientName, Validators.compose([])],
       "sex": [this.patientInfo.patientHistory.sex, Validators.compose([])],
+      "stature": [this.patientInfo.patientHistory.stature, Validators.compose([])],
+      "weight": [this.patientInfo.patientHistory.weight, Validators.compose([])],
+      "age": [this.patientInfo.patientHistory.age, Validators.compose([])],
+      "smoke": [this.patientInfo.patientHistory.smoke, Validators.compose([])],
       "pid": [this.patientInfo.patientHistory.pid, Validators.compose([])],
       "tel": [this.patientInfo.patientHistory.tel, Validators.compose([])],
       "job": [this.patientInfo.patientHistory.job, Validators.compose([])],
@@ -105,6 +113,10 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
     this.pid = this.caseHistoryForm.controls['pid'];
     this.tel = this.caseHistoryForm.controls['tel'];
     this.job = this.caseHistoryForm.controls['job'];
+    this.stature = this.caseHistoryForm.controls['stature'];
+    this.age = this.caseHistoryForm.controls['age'];
+    this.weight = this.caseHistoryForm.controls['weight'];
+    this.smoke = this.caseHistoryForm.controls['smoke'];
     this.complication = this.caseHistoryForm.controls['complication'];
     this.jobHistory = this.caseHistoryForm.controls['jobHistory'];
     this.dustAge = this.caseHistoryForm.controls['dustAge'];

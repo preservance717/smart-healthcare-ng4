@@ -6,21 +6,21 @@
   .upload-case-history{
     background: #1d68b3 ;
     background: #1d68b3;
-    float: right;
-    position: absolute;
-    top: 360px;
-    right: 390px;
+    //float: right;
+    position: relative;
+    top: 40px;
+    right: -811px;
   }
 
   .ch-row{
     margin-bottom: 15px;
   }
 
-  .sex-select{
-    select{
-      height: 48px;
-    }
-  }
+  //.sex-select{
+  //  select{
+  //    height: 48px;
+  //  }
+  //}
 
   textarea{
     width: 970px;
@@ -33,16 +33,15 @@
     text-align: center;
     padding: 20px 0;
   }
+
+  .col-3{
+    flex: 0 0 23%;
+  }
 }
 .register-form{
-  padding: 18px 0;
+  padding-bottom: 38px;
   text-align: center;
 }
-
-.file-upload{
-  margin-top: 14px;
-}
-
 .analyze{
   color:#fff !important;
   border-radius: 4px !important;
