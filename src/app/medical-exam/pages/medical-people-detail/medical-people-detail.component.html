@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="fullScreenBtn == false">
   <div class="actual-content">
     <div class="actual-content-title">
       <div class="actual-title-con">
@@ -50,7 +50,7 @@
                         </div>
                       </div>
                       <div class="review-full-btn">
-                        <a class="btn"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
+                        <a class="btn" (click)="reviewFullScreen()"><i class="fa fa-search-plus fa-3x" aria-hidden="true"></i></a>
                       </div>
                     </div>
                   </div>
@@ -92,5 +92,23 @@
         </accordion>
       </div>
     </div>
+  </div>
+</div >
+<div class="dicom-fullscreen" *ngIf="fullScreenBtn">
+  <div>
+    <a class="btn back" (click)="backDetail()"><i class="fa fa-undo" aria-hidden="true"></i>返回详情</a>
+  </div>
+  <div id="dicomWrapper1"
+       class='disable-selection noIbar'
+       unselectable='on'
+       onselectstart='return false;'
+       onmousedown='return false;'>
+    <div id="fullDicomImage" #fullDcmEle
+         style="position:absolute; top:0; bottom: 0;left:0;right:0;">
+    </div>
+  </div>
+  <div class="dcm-detail">
+    <span>Rows: </span><span id="rows"></span><br>
+    <span>Columns: </span><span id="columns"></span><br>
   </div>
 </div>
