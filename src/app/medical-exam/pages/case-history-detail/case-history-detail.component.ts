@@ -165,33 +165,34 @@ export class CaseHistoryDetailComponent implements OnInit {
   }
 
   dcmDescripe(){
-    $('#transferSyntax').text(this.getTransferSyntax());
-    $('#sopClass').text(this.getSopClass());
-    $('#samplesPerPixel').text(this.imageData.data.uint16('x00280002'));
+    // $('#transferSyntax').text(this.getTransferSyntax());
+    // $('#sopClass').text(this.getSopClass());
+    // $('#samplesPerPixel').text(this.imageData.data.uint16('x00280002'));
     $('#columns').text(this.imageData.data.uint16('x00280011'));
-    $('#photometricInterpretation').text(this.imageData.data.string('x00280004'));
-    $('#numberOfFrames').text(this.imageData.data.string('x00280008'));
+    // $('#photometricInterpretation').text(this.imageData.data.string('x00280004'));
+    // $('#numberOfFrames').text(this.imageData.data.string('x00280008'));
     $('#rows').text(this.imageData.data.uint16('x00280010'));
-    $('#pixelSpacing').text(this.imageData.data.string('x00280030'));
-    $('#planarConfiguration').text(this.getPlanarConfiguration());
-    $('#bitsAllocated').text(this.imageData.data.uint16('x00280100'));
-    $('#bitsStored').text(this.imageData.data.uint16('x00280101'));
-    $('#highBit').text(this.imageData.data.uint16('x00280102'));
-    $('#pixelRepresentation').text(this.getPixelRepresentation());
-    $('#windowCenter').text(this.imageData.data.string('x00281050'));
-    $('#windowWidth').text(this.imageData.data.string('x00281051'));
-    $('#rescaleIntercept').text(this.imageData.data.string('x00281052'));
-    $('#rescaleSlope').text(this.imageData.data.string('x00281053'));
-    $('#basicOffsetTable').text(this.imageData.data.elements.x7fe00010.basicOffsetTable ? this.imageData.data.elements.x7fe00010.basicOffsetTable.length : '');
-    $('#fragments').text(this.imageData.data.elements.x7fe00010.fragments ? this.imageData.data.elements.x7fe00010.fragments.length : '');
-    $('#minStoredPixelValue').text(this.imageData.minPixelValue);
-    $('#maxStoredPixelValue').text(this.imageData.maxPixelValue);
-    $('#loadTime').text(this.imageData.loadTimeInMS + "ms");
-    $('#decodeTime').text(this.imageData.decodeTimeInMS + "ms");
+    // $('#pixelSpacing').text(this.imageData.data.string('x00280030'));
+    // $('#planarConfiguration').text(this.getPlanarConfiguration());
+    // $('#bitsAllocated').text(this.imageData.data.uint16('x00280100'));
+    // $('#bitsStored').text(this.imageData.data.uint16('x00280101'));
+    // $('#highBit').text(this.imageData.data.uint16('x00280102'));
+    // $('#pixelRepresentation').text(this.getPixelRepresentation());
+    // $('#windowCenter').text(this.imageData.data.string('x00281050'));
+    // $('#windowWidth').text(this.imageData.data.string('x00281051'));
+    // $('#rescaleIntercept').text(this.imageData.data.string('x00281052'));
+    // $('#rescaleSlope').text(this.imageData.data.string('x00281053'));
+    // $('#basicOffsetTable').text(this.imageData.data.elements.x7fe00010.basicOffsetTable ? this.imageData.data.elements.x7fe00010.basicOffsetTable.length : '');
+    // $('#fragments').text(this.imageData.data.elements.x7fe00010.fragments ? this.imageData.data.elements.x7fe00010.fragments.length : '');
+    // $('#minStoredPixelValue').text(this.imageData.minPixelValue);
+    // $('#maxStoredPixelValue').text(this.imageData.maxPixelValue);
+    // $('#loadTime').text(this.imageData.loadTimeInMS + "ms");
+    // $('#decodeTime').text(this.imageData.decodeTimeInMS + "ms");
   }
 
   activeDcm(ele, imageData){
     cornerstone.displayImage(ele, imageData);
+    console.log(imageData);
     cornerstoneTools.mouseInput.enable(ele);
     cornerstoneTools.mouseWheelInput.enable(ele);
 
@@ -200,6 +201,12 @@ export class CaseHistoryDetailComponent implements OnInit {
     cornerstoneTools.pan.activate(ele, 2); // pan is the default tool for middle mouse button
     cornerstoneTools.zoom.activate(ele, 4); // zoom is the default tool for right mouse button
     cornerstoneTools.zoomWheel.activate(ele); // zoom is the default tool for middle mouse wheel
+    cornerstoneTools.addStackStateManager(ele, ['playClip']);
+    // cornerstoneTools.addToolState(ele, 'stack',0);
+
+    cornerstoneTools.stackScrollWheel.activate(ele);
+    cornerstoneTools.stackPrefetch.enable(ele);
+
   }
 
   getTransferSyntax() {
@@ -234,4 +241,106 @@ export class CaseHistoryDetailComponent implements OnInit {
       this.initImage(this.patientMDInfo.filename);
     }, 0);
   }
+
+  wwWl(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    cornerstoneTools.wwwc.activate(this.fullDcmEle.nativeElement, 1);
+    cornerstoneTools.wwwcTouchDrag.activate(this.fullDcmEle.nativeElement);
+  }
+
+  inverseColor(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    var viewport = cornerstone.getViewport(this.fullDcmEle.nativeElement);
+    if (viewport.invert === true) {
+      viewport.invert = false;
+    } else {
+      viewport.invert = true;
+    }
+    cornerstone.setViewport(this.fullDcmEle.nativeElement, viewport);
+  }
+
+  zoom(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    cornerstoneTools.zoom.activate(this.fullDcmEle.nativeElement, 5); // 5 is right mouse button and left mouse button
+    cornerstoneTools.zoomTouchDrag.activate(this.fullDcmEle.nativeElement);
+  }
+
+  pan(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    cornerstoneTools.pan.activate(this.fullDcmEle.nativeElement, 3); // 3 is middle mouse button and left mouse button
+    cornerstoneTools.panTouchDrag.activate(this.fullDcmEle.nativeElement);
+  }
+
+  scroll(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    cornerstoneTools.stackScroll.activate(this.fullDcmEle.nativeElement, 1);
+    cornerstoneTools.stackScrollTouchDrag.activate(this.fullDcmEle.nativeElement);
+  }
+
+  play(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    var stackState = cornerstoneTools.getToolState(this.fullDcmEle.nativeElement,'stack');
+    console.log("stackState ",stackState);
+    if(stackState&&stackState.data[0]){
+      var frameRate = stackState.data[0].frameRate;
+    }
+    // Play at a default 10 FPS if the framerate is not specified
+    if (frameRate === undefined) {
+      frameRate = 10;
+    }
+    console.log("frameRate ",frameRate);
+
+    cornerstoneTools.playClip(this.fullDcmEle.nativeElement, frameRate);
+    // cornerstone.playClip(this.fullDcmEle.nativeElement, frameRate);
+
+
+  }
+
+  stop(){
+    this.disableAllTools(this.fullDcmEle.nativeElement);
+    cornerstoneTools.stopClip(this.fullDcmEle.nativeElement);
+  }
+
+  disableAllTools(element) {
+    cornerstoneTools.wwwc.disable(element);
+    cornerstoneTools.pan.activate(element, 2); // 2 is middle mouse button
+    cornerstoneTools.zoom.activate(element, 4); // 4 is right mouse button
+    cornerstoneTools.probe.deactivate(element, 1);
+    cornerstoneTools.length.deactivate(element, 1);
+    cornerstoneTools.angle.deactivate(element, 1);
+    cornerstoneTools.ellipticalRoi.deactivate(element, 1);
+    cornerstoneTools.rectangleRoi.deactivate(element, 1);
+    cornerstoneTools.stackScroll.deactivate(element, 1);
+    cornerstoneTools.wwwcTouchDrag.deactivate(element);
+    cornerstoneTools.zoomTouchDrag.deactivate(element);
+    cornerstoneTools.panTouchDrag.deactivate(element);
+    cornerstoneTools.stackScrollTouchDrag.deactivate(element);
+}
+
+  forEachViewport(callback) {
+  // var elements = $('.viewport');
+  //   console.log("  forEachViewport", elements);
+  //   elements.forEach(value=>{
+  //     console.log("index,value", value);
+  //     var element = value;
+  //     try {
+  //       callback(element);
+  //     }
+  //     catch(e) {
+  //
+  //     }
+  //   })
+  //
+  //   // $.each(elements, function(index, value) {
+  //   //   console.log("index,value",index, value);
+  //   // var element = value;
+  //   // try {
+  //   //   callback(element);
+  //   // }
+  //   // catch(e) {
+  //   //
+  //   // }
+  // // });
+}
+
 }
