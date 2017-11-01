@@ -105,7 +105,7 @@ export class CaseHistoryDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reviewDetail();
+    // this.reviewDetail();
   }
 
   reviewDetail() {

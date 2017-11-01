@@ -139,12 +139,14 @@ export class CaseHistoryComponent implements OnInit,AfterViewInit {
       file: this.fileInfo.file,
       medicalHistories: this.medicalHistoryList || []
     };
-    this._service.newCaseHistory(this.caseHistoryInfo)
-      .then(res => {
-        if (res.aboolean === true) {
-          this.router.navigate(["/medical-exam/pages/ra"]);
-        }
-      });
+    this.router.navigate(["/medical-exam/pages/ra"]);
+    //调用后台接口
+    // this._service.newCaseHistory(this.caseHistoryInfo)
+    //   .then(res => {
+    //     if (res.aboolean === true) {
+    //       this.router.navigate(["/medical-exam/pages/ra"]);
+    //     }
+    //   });
   }
 
   updateCaseHistory() {

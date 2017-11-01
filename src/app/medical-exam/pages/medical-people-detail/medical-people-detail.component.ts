@@ -28,7 +28,7 @@ export class MedicalPeopleDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.reviewPatientDetail();
+    // this.reviewPatientDetail();
   }
 
   reviewPatientDetail(){

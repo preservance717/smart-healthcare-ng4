@@ -7,7 +7,7 @@ import {Router} from "@angular/router";
   selector: 'dashboard',
   templateUrl: 'dashboard.component.html',
   styleUrls: ['dashboard.component.scss'],
-  providers:[DashboardService]
+  providers: [DashboardService]
 })
 
 export class DashboardComponent implements OnInit {
@@ -16,40 +16,54 @@ export class DashboardComponent implements OnInit {
   viewBtn: boolean = false;
   caseHistoryList: any = [];
 
-  constructor( private _service:DashboardService,private renderer:Renderer2,private router:Router) {
+  constructor(private _service: DashboardService, private renderer: Renderer2, private router: Router) {
   }
 
   ngOnInit() {
     this.viewBtn = sessionStorage.getItem("user_type") == 'tj_expert';
     this.getCaseHistoryList();
     // this.rows.forEach(row=>{
-      // if(row.dustProperty.split("级")[0]-0>1){
-      //   this.renderer.setStyle(this.dustProperty.nativeElement,'background','#000')
-      // }else {
-      //   this.renderer.setStyle(this.dustProperty.nativeElement,'background','#fff')
-      // }
+    // if(row.dustProperty.split("级")[0]-0>1){
+    //   this.renderer.setStyle(this.dustProperty.nativeElement,'background','#000')
+    // }else {
+    //   this.renderer.setStyle(this.dustProperty.nativeElement,'background','#fff')
+    // }
     // })
   }
 
-  getCaseHistoryList(){
-    this._service.getCaseHistoryList()
-      .then(res=>{
-        if(res.aboolean === true){
-          this.caseHistoryList = res.data
-        }
-      })
+  getCaseHistoryList() {
+    this.caseHistoryList = [
+      {
+        id: 1,
+        patientName: "patient1",
+        sex: "男",
+        tel: "123345667677777",
+        dustAge: 2,
+        dustProperty: "一级",
+        createdOn: "2017-10-01",
+      }
+    ];
+    //调用后台接口
+    // this._service.getCaseHistoryList()
+    //   .then(res=>{
+    //     if(res.aboolean === true){
+    //       this.caseHistoryList = res.data
+    //     }
+    //   })
   }
-  newCaseHistory(){
+
+  newCaseHistory() {
     sessionStorage.removeItem("patientId");
   }
-  getPatientId(row){
+
+  getPatientId(row) {
     sessionStorage.setItem("patientId", row.id);
   }
 
-  toggleNewCaseHistory(){
-    if(this.viewBtn === false){
+  toggleNewCaseHistory() {
+    if (this.viewBtn === false) {
       this.router.navigate(["/medical-exam/pages/ch"]);
-    }else {
+    } else {
       this.router.navigate(["/medical-exam/pages/db"]);
     }
   }
