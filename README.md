@@ -6,9 +6,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 * npm install
 
-### or
+#### or
 
-* yarn(https://yarnpkg.com/latest.msi) install(推荐使用)
+* [yarn](https://yarnpkg.com/latest.msi) install(推荐使用)
 
 ## Development server
 
